@@ -55,8 +55,6 @@ export default function CheckCity() {
             ))}
           </ul>
         </div>
-      ) : (
-        <p style={{ marginTop: "1rem" }}>Loading...</p>
       )}
     </div>
   );
