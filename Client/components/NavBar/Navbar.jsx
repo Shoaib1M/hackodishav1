@@ -1,20 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   return (
     <nav className="navbar">
-      <div className="logo">NoiseGuardian</div>
+      <div className="logo" style={{ marginRight: "2rem" }}>NoiseLens</div>
       <ul className="nav-links">
         <li>
-          <Link to="/">Home</Link>
+          <a
+            href="#about"
+            onClick={e => {
+              e.preventDefault();
+              const aboutSection = document.getElementById("about");
+              if (!aboutSection) return;
+
+              // Check if About section is in view
+              const rect = aboutSection.getBoundingClientRect();
+              const inView =
+                rect.top >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+
+              if (!inView) {
+                aboutSection.scrollIntoView({ behavior: "smooth" });
+                // Dispatch a custom event to trigger typing effect
+                window.dispatchEvent(new Event("about-typing-trigger"));
+              }
+            }}
+          >
+            About
+          </a>
         </li>
         <li>
-          <Link to="/checkfile">Check File</Link>
+          <a href="#quick-demo">Quick Demo</a>
         </li>
         <li>
-          <Link to="/checkcity">Check City</Link>
+          <a href="#working">Core</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
         </li>
       </ul>
     </nav>
