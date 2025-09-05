@@ -9,7 +9,7 @@ const Demo = () => (
       <div className="demo-card">
         <h3>City Stats</h3>
         <div className="demo-placeholder">[Line Chart Here]</div>
-        <div className="demo-avg">Avg: <span className="demo-avg-value"></span></div>
+        <div className="demo-avg"><span className="demo-avg-value"></span></div>
         <button className="demo-btn">Try It &rarr;</button>
       </div>
       {/* Card 2: Audio Analysis */}
