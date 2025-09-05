@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "../pages/Home/home.jsx";
+import Home from "../pages/Home/Home.jsx";
 import CheckCity from "../pages/CheckCity/CheckCity.jsx";
 import CheckFile from "../pages/CheckFile/CheckFile.jsx";
 import Navbar from "../components/NavBar/Navbar.jsx";

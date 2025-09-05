@@ -1,0 +1,309 @@
+.hero-section {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #181c2f 0%, #00e6a8 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Wave Animation Keyframes */
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateX(-25px) translateY(-15px) rotate(1deg) scale(1.02);
+  }
+  50% {
+    transform: translateX(-50px) translateY(0) rotate(0deg) scale(1.05);
+  }
+  75% {
+    transform: translateX(-25px) translateY(15px) rotate(-1deg) scale(1.02);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* Additional wave animation for more dynamic effect */
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
+
+/* Apply floating animation to waves */
+.hero-section > div[style*="wave"] {
+  animation: wave 8s ease-in-out infinite, waveFloat 12s ease-in-out infinite;
+}
+
+.hero-section > div[style*="wave"]:nth-child(2) {
+  animation: wave 6s ease-in-out infinite reverse, waveFloat 10s ease-in-out infinite;
+}
+
+.hero-section > div[style*="wave"]:nth-child(3) {
+  animation: wave 10s ease-in-out infinite, waveFloat 14s ease-in-out infinite;
+}
+
+.hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  flex: 1 1 400px;
+  min-width: 320px;
+  position: relative;
+  z-index: 15;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin: 0 auto 1.2rem auto;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  overflow: visible;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.typing-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background: #00e6a8;
+  margin-left: 2px;
+  animation: blink-caret 0.75s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+.hero-subtext {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-ai {
+  color: #00e6a8;
+  font-weight: 600;
+}
+
+.highlight-akash {
+  color: #00e6a8;
+  font-weight: 600;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 200px;
+  position: relative;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.hero-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.hero-btn:hover::before {
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.hero-btn.primary {
+  background: #00e6a8;
+  color: #181c2f;
+  box-shadow: 0 4px 15px rgba(0, 230, 168, 0.3);
+}
+
+.hero-btn.primary:hover {
+  background: #00d4a0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 230, 168, 0.4);
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.hero-btn.secondary:hover {
+  background: #fff;
+  color: #181c2f;
+  transform: translateY(-2px);
+}
+
+.hero-facts {
+  flex: 1 1 300px;
+  min-width: 280px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  z-index: 15;
+}
+
+.hero-fact {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.hero-fact.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-fact.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.hero-fact-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hero-fact-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-fact-dot.active {
+  background: #00e6a8;
+  transform: scale(1.2);
+}
+
+.hero-fact-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-flex {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.1rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero-facts {
+    min-width: 100%;
+  }
+
+  .hero-fact {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .hero-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .hero-fact {
+    font-size: 1.1rem;
+  }
+}
