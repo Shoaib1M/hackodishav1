@@ -1,0 +1,147 @@
+.working-section {
+  background: #f8ffff;
+  padding: 70px 0 60px 0;
+}
+
+.working-flow {
+  margin-bottom: 3.5rem;
+}
+
+.working-flow-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #181c2f;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.working-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+  flex-wrap: wrap;
+}
+
+.working-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 2rem 1.5rem;
+  min-width: 220px;
+  max-width: 300px;
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
+
+.working-card:hover {
+  box-shadow: 0 8px 32px 0 #00e6a8aa, 0 4px 24px rgba(0,0,0,0.07);
+  z-index: 2;
+}
+
+.working-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.working-step-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #00bfa3;
+}
+
+.working-step-desc {
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  color: #181c2f;
+}
+
+.working-step-example {
+  font-size: 0.98rem;
+  color: #888;
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .working-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .working-card {
+    width: 90vw;
+    max-width: 400px;
+  }
+}
+
+.tech-section {
+  margin-top: 3.5rem;
+  text-align: center;
+}
+
+.tech-logos {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.tech-logo {
+  filter: drop-shadow(0 2px 8px #00e6a855);
+  transition: transform 0.2s;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tech-logo .tech-emoji {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.tech-logo .tech-label {
+  display: inline-block;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1rem;
+  color: #181c2f;
+  background: #fff;
+  padding: 0.15em 0.7em;
+  border-radius: 1em;
+  box-shadow: 0 2px 8px #00e6a822;
+  white-space: nowrap;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.25s;
+}
+
+.tech-logo:hover {
+  /* No tilt or scale */
+}
+
+.tech-logo:hover .tech-emoji {
+  opacity: 0;
+}
+
+.tech-logo:hover .tech-label {
+  opacity: 1;
+}
+
+.tech-text {
+  font-size: 1.1rem;
+  color: #181c2f;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-top: 0.5rem;
+}
