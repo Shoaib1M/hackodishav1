@@ -1,0 +1,65 @@
+.about-section {
+  padding: 80px 0 60px 0;
+  background: linear-gradient(120deg, #00e6a8 0%, #f8ffff 100%);
+  color: #181c2f;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Enhanced geometric pattern overlay */
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(135deg, #b2dfdb44 0 2px, transparent 2px 32px),
+    repeating-linear-gradient(45deg, #b2dfdb44 0 2px, transparent 2px 32px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.about-heading {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.about-text {
+  font-size: 1.18rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  min-height: 90px;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.about-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background: #00e6a8;
+  margin-left: 2px;
+  animation: blink-caret 0.75s step-end infinite;
+  vertical-align: middle;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.about-caret.hide {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
