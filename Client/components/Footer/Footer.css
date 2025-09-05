@@ -1,0 +1,124 @@
+.footer {
+    background: linear-gradient(135deg, #181c2f 0%, #0f1419 100%);
+    color: #bfc9d1;
+    padding: 3rem 0 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 230, 168, 0.1);
+  }
+  
+  /* Subtle pattern overlay */
+  .footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, rgba(0, 230, 168, 0.03) 0 1px, transparent 1px 20px),
+      repeating-linear-gradient(-45deg, rgba(0, 230, 168, 0.03) 0 1px, transparent 1px 20px);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .footer-links {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .footer-link {
+    color: #bfc9d1;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    position: relative;
+  }
+  
+  .footer-link:hover {
+    color: #00e6a8;
+    transform: translateY(-1px);
+  }
+  
+  .footer-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #00e6a8;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .footer-link:hover::after {
+    width: 80%;
+  }
+  
+  .footer-dot {
+    color: #4a5568;
+    margin: 0 0.3rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .footer-disclaimer {
+    font-size: 0.95rem;
+    color: #6c757d;
+    font-style: italic;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  .footer-disclaimer:hover {
+    opacity: 1;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .footer {
+      padding: 2rem 0 1.5rem 0;
+    }
+    
+    .footer-content {
+      padding: 0 1rem;
+    }
+    
+    .footer-links {
+      font-size: 1rem;
+      gap: 0.3rem;
+    }
+    
+    .footer-link {
+      padding: 0.4rem 0.6rem;
+    }
+    
+    .footer-disclaimer {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-links {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .footer-dot {
+      display: none;
+    }
+  }
