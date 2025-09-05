@@ -1,46 +1,121 @@
-.checkcity-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #f8fafc; /* light gray background */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #1e1e1e;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Map container */
+.aqi-map {
+  height: 400px;
+  width: 100%;
+  margin-bottom: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  font-family: Arial, sans-serif;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-.checkcity-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #1e293b;
+.dropdowns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
 }
 
-.city-select {
-  padding: 0.5rem 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
+select {
+  padding: 10px 15px;
   font-size: 1rem;
-  background-color: #fff;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2e2e2e;
+  color: white;
+  cursor: pointer;
 }
 
-.stats-box {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.aqi-card {
+  padding: 20px;
+  border-radius: 16px;
+  margin: 20px auto;
+  max-width: 500px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.aqi-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.advice {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* AQI Colors */
+.level-good { background: #4caf50; }
+.level-moderate { background: #ffeb3b; color: black; }
+.level-unhealthy-sensitive { background: #ff9800; }
+.level-unhealthy { background: #f44336; }
+.level-very-unhealthy { background: #9c27b0; }
+.level-hazardous { background: #6d0000; }
+
+/* Chart styling */
+.chart-container {
   background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
-.stats-box p {
-  margin: 0.4rem 0;
-  font-size: 1rem;
+select option {
+  background: #1e1e1e;
+  color: white;
 }
 
-.series-list {
-  margin-top: 1rem;
-  padding-left: 1.5rem;
+/* AQI Legend */
+.aqi-legend {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.series-list li {
-  margin-bottom: 0.3rem;
+.aqi-legend h3 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.aqi-gradient {
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00e400,   /* Good */
+    #ffff00,   /* Moderate */
+    #ff7e00,   /* Unhealthy for Sensitive */
+    #ff0000,   /* Unhealthy */
+    #8f3f97,   /* Very Unhealthy */
+    #7e0023    /* Hazardous */
+  );
+  margin: 0 auto 6px auto;
+  max-width: 600px;
+}
+
+.aqi-labels {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 0.85rem;
 }
