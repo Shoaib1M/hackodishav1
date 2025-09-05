@@ -1,0 +1,46 @@
+.checkcity-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f8fafc; /* light gray background */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+}
+
+.checkcity-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.city-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+.stats-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+}
+
+.stats-box p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+}
+
+.series-list {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+}
+
+.series-list li {
+  margin-bottom: 0.3rem;
+}
