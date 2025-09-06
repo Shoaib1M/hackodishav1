@@ -49,10 +49,10 @@ function Navbar() {
   };
 
   const navItems = [
-    { id: "hero", label: "Get Started", href: "#hero" },
+    { id: "hero", label: "Home", href: "#hero" },
     { id: "about", label: "About", href: "#about" },
     { id: "quick-demo", label: "Quick Demo", href: "#quick-demo" },
-    { id: "working", label: "Core", href: "#working" },
+    { id: "working", label: "Core Features", href: "#working" },
     { id: "contact", label: "Contact", href: "#contact" }
   ];
 
