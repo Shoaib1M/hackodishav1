@@ -43,11 +43,27 @@ function CheckCity() {
   }, []);
 
   // Fetch list of stations for a country
+  // Fetch list of stations for a country
+  // Fetch list of stations for a country
   const fetchCities = async (countryName) => {
     try {
       const response = await fetch(`/api/countries/${countryName}`);
       const data = await response.json();
-      setCities(data.cities || []);
+
+      const uniqueCities = {};
+      (data.cities || []).forEach((c) => {
+        // Split by comma → [City, State, ...]
+        const parts = c.name.split(",").map((p) => p.trim());
+        const cityState =
+          parts.length >= 2 ? `${parts[0]}, ${parts[1]}` : parts[0];
+
+        // Keep only one entry per "City, State"
+        if (!uniqueCities[cityState]) {
+          uniqueCities[cityState] = { uid: c.uid, name: cityState };
+        }
+      });
+
+      setCities(Object.values(uniqueCities));
     } catch (error) {
       console.error("Error fetching cities:", error);
     }
