@@ -178,15 +178,28 @@ app.get("/api/noise", (req, res) => {
         mapHeaders: ({ header }) => header.trim(),
       })
     )
+    .on("error", (error) => {
+      // This will catch errors from the CSV parser AND from the 'data' event handler
+      console.error("Error processing CSV data:", error);
+      if (!res.headersSent) {
+        res.status(500).json({
+          error: "Could not process noise pollution data.",
+          details: error.message,
+        });
+      }
+    })
     .on("data", (row) => {
-      results.push({
-        Station: row.Station.trim(),
-        Year: +row.Year,
-        Day: +row["Day (Db)"],
-        Night: +row["Night (Db)"],
-        DayLimit: +row["DayLimit (Db)"],
-        NightLimit: +row["NightLimit (Db)"],
-      });
+      // Add a guard against malformed rows (e.g., empty lines)
+      if (row.Station && row.Station.trim()) {
+        results.push({
+          Station: row.Station.trim(),
+          Year: +row.Year,
+          Day: +row["Day (Db)"],
+          Night: +row["Night (Db)"],
+          DayLimit: +row["DayLimit (Db)"],
+          NightLimit: +row["NightLimit (Db)"],
+        });
+      }
     })
     .on("end", () => {
       res.json(results);
