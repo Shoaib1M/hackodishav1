@@ -6,10 +6,9 @@ import "./Navbar.css";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [isSlidingOut, setIsSlidingOut] = useState(() => {
-    // Initialize with global state to prevent blinking
-    return window.navbarHidden === true;
-  });
+  const [showNavLinks, setShowNavLinks] = useState(
+    () => window.navLinksHidden !== true
+  );
   const location = useLocation();
 
   // Scroll spy functionality
@@ -65,15 +64,15 @@ function Navbar() {
 
   // Function to trigger navbar slide-out
   const triggerSlideOut = () => {
-    setIsSlidingOut(true);
-    window.navbarHidden = true;
+    setShowNavLinks(false);
+    window.navLinksHidden = true;
   };
 
   // Expose the function globally
   useEffect(() => {
     window.triggerNavbarSlideOut = triggerSlideOut;
     return () => {
-      delete window.triggerNavbarSlideOut;
+      window.triggerNavbarSlideOut = undefined;
     };
   }, []);
 
@@ -88,12 +87,18 @@ function Navbar() {
     setIsMenuOpen(false);
   };
 
-  const handleLogoClick = () => {
-    // If links are slid out, slide them back in
-    if (isSlidingOut) {
-      setIsSlidingOut(false);
-      window.navbarHidden = false;
+  const handleLogoClick = (e) => {
+    // If links are hidden, show them
+    setShowNavLinks(true);
+    window.navLinksHidden = false;
+
+    // If we are already on the home page, prevent default link behavior
+    // and just do a smooth scroll.
+    if (location.pathname === "/") {
+      e.preventDefault();
+      scrollToSection("hero");
     }
+    // On other pages, we do NOT prevent default, so the `href` will navigate.
   };
 
   const navItems = [
@@ -105,28 +110,38 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`navbar ${isSlidingOut ? 'slide-out' : ''}`}>
-      <Link to="/" className="logo" onClick={handleLogoClick}>
+    <nav className="navbar">
+      <a href="/#hero" className="logo" onClick={handleLogoClick}>
         PolSense
-      </Link>
+      </a>
 
       {/* Desktop Navigation */}
-      <ul className="nav-links desktop-nav">
-        {navItems.map((item) => (
-          <li key={item.id}>
-            <a
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.id);
-              }}
-              className={`nav-link ${activeSection === item.id ? "active" : ""}`}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <AnimatePresence>
+        {showNavLinks && (
+          <motion.ul
+            className="nav-links desktop-nav"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
+                  className={`nav-link ${activeSection === item.id ? "active" : ""}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
 
       {/* Hamburger Menu Button */}
       <button
