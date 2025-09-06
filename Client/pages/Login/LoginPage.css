@@ -1,0 +1,64 @@
+/* General styling to match the main page */
+.login-page {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+    min-height: 100vh;
+}
+
+/* Styling for the login card */
+.login-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form-card {
+    background: rgba(18, 65, 112, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for inputs and button */
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background-color: #1a1a1a;
+        color: rgba(255, 255, 255, 0.87);
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+.login-button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    width: 100%;
+    color: #ffffff;
+}
+
+    .login-button:hover {
+        border-color: #646cff;
+    }
