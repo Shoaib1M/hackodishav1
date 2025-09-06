@@ -1,0 +1,41 @@
+.noise-container {
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.dropdown-container {
+  margin: 20px auto;
+}
+
+select {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2e2e2e;
+  color: white;
+  cursor: pointer;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px auto;
+  color: black;
+  max-width: 1500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.map-container {
+  margin-bottom: 30px;
+}
+
+.leaflet-map {
+  height: 700px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}

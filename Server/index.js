@@ -66,14 +66,27 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import fs from "fs";
+import csv from "csv-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 const app = express();
 app.use(cors());
 
+// Get the directory name of the current module to build absolute paths
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const PORT = process.env.PORT || 5000;
 const API_KEY =
   process.env.WAQI_TOKEN || "d590c44ddff6390902a11009e9f9abb08dc18a5c";
+
+// ✅ Simple root route to confirm the server is running
+app.get("/", (req, res) => {
+  res.send("<h1>API Server is running</h1><p>Try accessing /api/noise</p>");
+});
 
 // Bounding boxes for countries (southLat, westLng, northLat, eastLng)
 const countryBounds = {
@@ -143,6 +156,54 @@ app.get("/api/station/:uid", async (req, res) => {
     console.error("API Error:", error);
     res.status(500).json({ error: "Server error" });
   }
+});
+
+// ✅ Noise Pollution Data (from CSV)
+app.get("/api/noise", (req, res) => {
+  const results = [];
+  const csvPath = path.join(__dirname, "noise_pollution_india.csv");
+
+  const stream = fs.createReadStream(csvPath);
+
+  // CRITICAL: Handle errors, like "file not found"
+  stream.on("error", (error) => {
+    console.error("Error reading CSV file:", error);
+    res.status(500).json({ error: "Could not read noise pollution data." });
+  });
+
+  stream
+    .pipe(
+      csv({
+        separator: "\t",
+        mapHeaders: ({ header }) => header.trim(),
+      })
+    )
+    .on("error", (error) => {
+      // This will catch errors from the CSV parser AND from the 'data' event handler
+      console.error("Error processing CSV data:", error);
+      if (!res.headersSent) {
+        res.status(500).json({
+          error: "Could not process noise pollution data.",
+          details: error.message,
+        });
+      }
+    })
+    .on("data", (row) => {
+      // Add a guard against malformed rows (e.g., empty lines)
+      if (row.Station && row.Station.trim()) {
+        results.push({
+          Station: row.Station.trim(),
+          Year: +row.Year,
+          Day: +row["Day (Db)"],
+          Night: +row["Night (Db)"],
+          DayLimit: +row["DayLimit (Db)"],
+          NightLimit: +row["NightLimit (Db)"],
+        });
+      }
+    })
+    .on("end", () => {
+      res.json(results);
+    });
 });
 
 app.listen(PORT, () => {
