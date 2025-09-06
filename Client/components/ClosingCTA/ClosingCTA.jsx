@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../Hero/Hero.css"; // Import Hero styles for buttons
 import "./ClosingCTA.css";
 
 const ClosingCTA = () => {
@@ -20,15 +21,25 @@ const ClosingCTA = () => {
     navigate("/checkfile");
   };
 
+  const handleNoiseStatsClick = () => {
+    navigate("/noise-stats");
+  };
+
+  const handleTrashDetectorClick = () => {
+    navigate("/trash-detector");
+  };
+
   return (
     <section className="closing-cta-section">
       <div className="closing-cta-content">
         <h2 className="closing-cta-text">
-          Discover your city's soundscape today.
+          Understand Your City Better, One Pollution at a Time.
         </h2>
         <div className="closing-cta-buttons">
-          <button onClick={handleCityStatsClick} className="hero-btn primary">View City Noise Stats</button>
+          <button onClick={handleCityStatsClick} className="hero-btn secondary">View City AQI</button>
           <button onClick={handleAudioAnalysisClick} className="hero-btn secondary">Analyze My Audio</button>
+          <button onClick={handleNoiseStatsClick} className="hero-btn secondary">View Noise Level Stats</button>
+          <button onClick={handleTrashDetectorClick} className="hero-btn secondary">Trash Detector</button>
         </div>
       </div>
     </section>

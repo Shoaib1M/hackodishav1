@@ -8,7 +8,6 @@ const About = () => {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const typingRef = useRef();
 
   const backgroundImages = [
@@ -33,15 +32,10 @@ const About = () => {
     }, 20);
   };
 
-  // Background image carousel effect with smooth transition
+  // Background image carousel effect
   useEffect(() => {
     const imageInterval = setInterval(() => {
-      setIsTransitioning(true);
-      
-      setTimeout(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
-        setIsTransitioning(false);
-      }, 500); // Half of the transition duration
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
     }, 5000); // Change image every 5 seconds
 
     return () => clearInterval(imageInterval);
@@ -83,23 +77,16 @@ const About = () => {
           <div
             key={index}
             className={`about-bg-image ${
-              index === currentImageIndex ? 'active' : 
-              index === (currentImageIndex - 1 + backgroundImages.length) % backgroundImages.length ? 'previous' : ''
+              index === currentImageIndex ? 'active' : ''
             }`}
             style={{
               backgroundImage: `url(${image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
             }}
           />
         ))}
-        {/* Green translucent overlay */}
-        <div className="about-overlay"></div>
       </div>
-
       <div className="about-content">
-        <h2 className="about-heading">About NoiseLens</h2>
+        <h2 className="about-heading">About PolSense</h2>
         <p className="about-text">
           {highlightText(displayed)}
           <span className={`about-caret${done ? " hide" : ""}`} />

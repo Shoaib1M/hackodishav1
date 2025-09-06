@@ -1,9 +1,9 @@
 .working-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #ffffff 0%, #1976d2 100%);
-  color: #181c2f;
+  background: linear-gradient(180deg, #ddf4e7 0%, #124170 100%); /* Light Mint to Dark Blue */
   position: relative;
   overflow: hidden;
+  color: #ddf4e7; /* Light Mint */
 }
 
 .working-flow {
@@ -16,11 +16,12 @@
 
 .working-flow-title {
   font-size: 2.2rem;
-  font-weight: bold;
+  font-weight: 600; /* SemiBold */
   text-align: center;
   margin-bottom: 3rem;
-  color: #181c2f;
+  color: #67c090; /* Medium Green */
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Fredoka", sans-serif;
 }
 
 .working-cards {
@@ -35,7 +36,7 @@
   border-radius: 16px;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(103, 192, 144, 0.2);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
@@ -50,12 +51,12 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #00e6a8 0%, #00d4a0 100%);
+  background: #67C090; /* Medium Green */
 }
 
 .working-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgba(103, 192, 144, 0.3);
 }
 
 .working-icon {
@@ -66,26 +67,29 @@
 
 .working-step-title {
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 600; /* SemiBold */
   margin-bottom: 1rem;
-  color: #181c2f;
+  color: #26667f; /* Dark Teal */
+  font-family: "Fredoka", sans-serif;
 }
 
 .working-step-desc {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: #495057;
+  color: #26667f; /* Dark Teal */
+  font-family: "Nunito", sans-serif;
 }
 
 .working-step-example {
   font-size: 0.9rem;
   font-style: italic;
-  color: #6c757d;
-  background: rgba(0, 230, 168, 0.1);
+  color: #26667f; /* Dark Teal */
+  background: rgba(103, 192, 144, 0.15);
   padding: 0.5rem;
   border-radius: 6px;
-  border-left: 3px solid #00e6a8;
+  border-left: 3px solid #67C090; /* Medium Green */
+  font-family: "Nunito", sans-serif;
 }
 
 /* Tech Stack - Now integrated directly without wrapper */
@@ -107,14 +111,15 @@
   border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .tech-logo:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #fff;
   transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(103, 192, 144, 0.2);
 }
 
 .tech-emoji {
@@ -125,14 +130,16 @@
 .tech-label {
   font-size: 1rem;
   font-weight: 600;
-  color: #181c2f;
+  color: #124170; /* Dark Blue */
+  font-family: "Fredoka", sans-serif;
 }
 
 .tech-text {
   font-size: 1.1rem;
-  color: #495057;
+  color: #ddf4e7; /* Light Mint */
   font-style: italic;
   text-align: center;
+  font-family: "Nunito", sans-serif;
 }
 
 /* Responsive Design */

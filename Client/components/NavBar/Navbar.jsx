@@ -107,7 +107,7 @@ function Navbar() {
   return (
     <nav className={`navbar ${isSlidingOut ? 'slide-out' : ''}`}>
       <Link to="/" className="logo" onClick={handleLogoClick}>
-        NoiseLens
+        PolSense
       </Link>
 
       {/* Desktop Navigation */}

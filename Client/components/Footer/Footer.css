@@ -1,24 +1,23 @@
 .footer {
-    background: linear-gradient(135deg, #181c2f 0%, #0f1419 100%);
-    color: #bfc9d1;
-    padding: 3rem 0 2rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid rgba(0, 230, 168, 0.1);
-  }
-  
-  /* Subtle pattern overlay */
-  .footer::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: 
-      repeating-linear-gradient(45deg, rgba(0, 230, 168, 0.03) 0 1px, transparent 1px 20px),
-      repeating-linear-gradient(-45deg, rgba(0, 230, 168, 0.03) 0 1px, transparent 1px 20px);
-    pointer-events: none;
-    z-index: 1;
-  }
+  background: linear-gradient(135deg, #124170 0%, #26667f 100%); /* Dark Blue to Dark Teal */
+  color: #ddf4e7; /* Light Mint */
+  padding: 3rem 0 2rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(103, 192, 144, 0.2); /* Medium Green with transparency */
+}
+
+/* Subtle pattern overlay */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(103, 192, 144, 0.05) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(-45deg, rgba(103, 192, 144, 0.05) 0 1px, transparent 1px 20px);
+  pointer-events: none;
+  z-index: 1;
+}
   
   .footer-content {
     position: relative;
@@ -37,10 +36,11 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.5rem;
+    font-family: "Baloo 2", sans-serif;
   }
   
   .footer-link {
-    color: #bfc9d1;
+    color: #ddf4e7; /* Light Mint */
     text-decoration: none;
     transition: color 0.3s ease, transform 0.2s ease;
     padding: 0.5rem 0.8rem;
@@ -49,7 +49,7 @@
   }
   
   .footer-link:hover {
-    color: #00e6a8;
+    color: #67c090; /* Medium Green */
     transform: translateY(-1px);
   }
   
@@ -60,7 +60,7 @@
     left: 50%;
     width: 0;
     height: 2px;
-    background: #00e6a8;
+    background: #67c090; /* Medium Green */
     transition: all 0.3s ease;
     transform: translateX(-50%);
   }
@@ -70,7 +70,7 @@
   }
   
   .footer-dot {
-    color: #4a5568;
+    color: #26667f; /* Dark Teal */
     margin: 0 0.3rem;
     font-weight: bold;
     font-size: 1.2rem;
@@ -78,10 +78,11 @@
   
   .footer-disclaimer {
     font-size: 0.95rem;
-    color: #6c757d;
+    color: #ddf4e7; /* Light Mint */
     font-style: italic;
-    opacity: 0.8;
+    opacity: 0.7;
     transition: opacity 0.3s ease;
+    font-family: "Nunito", sans-serif;
   }
   
   .footer-disclaimer:hover {
