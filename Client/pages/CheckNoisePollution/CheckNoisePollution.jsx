@@ -166,7 +166,7 @@ function CheckNoisePollution() {
       {/* Noise Chart */}
       <div className="chart-container">
         <h2>Noise Levels (dB) - {selectedStation}</h2>
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={500}>
           <LineChart data={filteredData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
