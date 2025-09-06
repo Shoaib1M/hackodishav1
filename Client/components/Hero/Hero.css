@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caveat:wght@400..700&family=Fredoka:wght@300..700&family=Gloria+Hallelujah&family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.gloria-hallelujah-regular {
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 1000;
+  font-style: normal;
+}
+
 .hero-section {
   min-height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #181c2f 0%, #00e6a8 100%);
+  background: linear-gradient(100deg, #124170 0%, #26667F 100%); /* Dark Blue to Dark Teal */
   position: relative;
   overflow: hidden;
   padding: 0;
@@ -66,7 +74,7 @@
 
 .hero-content {
   text-align: center;
-  color: #fff;
+  color: #FFFFFF; /* White */
   z-index: 1;
   max-width: 700px;
   margin: 0 auto;
@@ -77,21 +85,23 @@
 }
 
 .hero-content h1 {
+  font-family: "Fredoka", sans-serif;
   font-size: 2.8rem;
-  font-weight: bold;
+  font-weight: 700; /* Bold */
   margin: 0 auto 1.2rem auto;
   line-height: 1.15;
   letter-spacing: 1px;
   overflow: visible;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffffff; /* White for high contrast */
 }
 
 .typing-caret {
   display: inline-block;
   width: 3px;
   height: 1.2em;
-  background: #00e6a8;
+  background: #67C090; /* Medium Green */
   margin-left: 2px;
   animation: blink-caret 0.75s step-end infinite;
   vertical-align: middle;
@@ -105,18 +115,19 @@
 .hero-subtext {
   font-size: 1.3rem;
   margin-bottom: 2.5rem;
-  opacity: 0.9;
+  color: #FFFFFF; /* White */
   font-weight: 300;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: "Nunito", sans-serif;
 }
 
 .highlight-ai {
-  color: #00e6a8;
+  color: #67C090; /* Medium Green */
   font-weight: 600;
 }
 
 .highlight-akash {
-  color: #00e6a8;
+  color: #67C090; /* Medium Green */
   font-weight: 600;
 }
 
@@ -128,8 +139,9 @@
 }
 
 .hero-btn {
+  font-family: "Lilita One", sans-serif;
   padding: 1rem 2rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
@@ -168,26 +180,26 @@
 }
 
 .hero-btn.primary {
-  background: #00e6a8;
-  color: #181c2f;
-  box-shadow: 0 4px 15px rgba(0, 230, 168, 0.3);
+  background: #67C090; /* Medium Green */
+  color: #FFFFFF; /* White */
+  box-shadow: 0 4px 15px rgba(103, 192, 144, 0.3);
 }
 
 .hero-btn.primary:hover {
-  background: #00d4a0;
+  background: #DDF4E7; /* Light Mint */
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 230, 168, 0.4);
+  box-shadow: 0 6px 20px rgba(103, 192, 144, 0.4);
 }
 
 .hero-btn.secondary {
   background: transparent;
-  color: #fff;
-  border: 2px solid #fff;
+  color: #FFFFFF; /* White */
+  border: 2px solid #67C090; /* Medium Green */
 }
 
 .hero-btn.secondary:hover {
-  background: #fff;
-  color: #181c2f;
+  background: #67C090; /* Medium Green */
+  color: #124170; /* Dark Blue */
   transform: translateY(-2px);
 }
 
@@ -201,8 +213,9 @@
 }
 
 .hero-fact {
+  font-family: "Baloo 2", sans-serif;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   padding: 1.5rem;
@@ -245,7 +258,7 @@
 }
 
 .hero-fact-dot.active {
-  background: #00e6a8;
+  background: #67C090; /* Medium Green */
   transform: scale(1.2);
 }
 

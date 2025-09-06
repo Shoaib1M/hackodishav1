@@ -6,10 +6,10 @@ import CheckFile from "../pages/CheckFile/CheckFile.jsx";
 import Navbar from "../components/NavBar/Navbar.jsx";
 import CheckNoisePollution from "../pages/CheckNoisePollution/CheckNoisePollution.jsx";
 
+
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/checkcity" element={<CheckCity />} />

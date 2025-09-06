@@ -1,7 +1,6 @@
 .demo-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #00e6a8 0%, #ffffff 100%);
-  color: #181c2f;
+  background: #DDF4E7; /* Light Mint */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -11,8 +10,9 @@
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 3rem;
-  color: #181c2f;
+  color: #124170; /* Dark Blue */
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Fredoka", sans-serif;
 }
 
 .demo-cards {
@@ -43,7 +43,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #00e6a8 0%, #00d4a0 100%);
+  background: #67C090; /* Medium Green */
 }
 
 .demo-card:hover {
@@ -53,18 +53,19 @@
 
 .demo-card h3 {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 500; /* Medium */
   margin-bottom: 1.5rem;
-  color: #181c2f;
+  color: #124170; /* Dark Blue */
+  font-family: "Baloo 2", sans-serif;
 }
 
 .demo-placeholder {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border: 2px dashed #00e6a8;
+  border: 2px dashed #67C090; /* Medium Green */
   border-radius: 12px;
   padding: 3rem 1rem;
   margin-bottom: 1.5rem;
-  color: #6c757d;
+  color: #26667F; /* Dark Teal */
   font-style: italic;
   font-size: 1.1rem;
   display: flex;
@@ -73,35 +74,37 @@
   min-height: 120px;
   position: relative;
   overflow: hidden;
+  font-family: "Baloo 2", sans-serif;
 }
 
 .demo-avg {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #495057;
+  color: #26667F; /* Dark Teal */
   font-weight: 500;
 }
 
 .demo-avg-value {
-  color: #00e6a8;
+  color: #67C090; /* Medium Green */
   font-weight: 700;
   font-size: 1.2rem;
 }
 
 .demo-btn {
-  background: linear-gradient(135deg, #00e6a8 0%, #00d4a0 100%);
-  color: #181c2f;
+  background: #67C090; /* Medium Green */
+  color: #124170; /* Dark Blue */
   border: none;
   padding: 0.8rem 2rem;
   border-radius: 8px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500; /* Medium */
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 230, 168, 0.3);
+  box-shadow: 0 4px 15px rgba(103, 192, 144, 0.3);
   width: 100%;
   position: relative;
   overflow: hidden;
+  font-family: "Baloo 2", sans-serif;
 }
 
 .demo-btn::before {
@@ -130,8 +133,8 @@
 
 .demo-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 230, 168, 0.4);
-  background: linear-gradient(135deg, #00d4a0 0%, #00c496 100%);
+  box-shadow: 0 6px 20px rgba(103, 192, 144, 0.4);
+  background: #DDF4E7; /* Light Mint */
 }
 
 .demo-btn:active {

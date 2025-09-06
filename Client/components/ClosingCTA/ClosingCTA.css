@@ -1,5 +1,5 @@
 .closing-cta-section {
-  background: linear-gradient(100deg, #181c2f 0%, #1976d2 100%);
+  background: linear-gradient(100deg, #124170 0%, #26667f 100%); /* Dark Blue to Dark Teal */
   padding: 64px 0 64px 0;
   display: flex;
   align-items: center;
@@ -16,20 +16,27 @@
   font-weight: bold;
   margin-bottom: 2rem;
   letter-spacing: 1px;
-  color: #00e6a8; /* Accent color for heading */
+  color: #ddf4e7; /* Light Mint for contrast on dark background */
+  font-family: "Lilita One", sans-serif;
 }
 
 .closing-cta-buttons {
   display: flex;
   gap: 1.2rem;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.closing-cta-buttons .hero-btn {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700; /* Bold */
 }
 
 .hero-btn.primary {
-  background: #00e6a8;
-  color: #181c2f;
-  border: none;
-  transition: background 0.2s, color 0.2s;
+  background: transparent;
+  color: #67c090; /* Medium Green */
+  border: 2px solid #67c090; /* Medium Green */
+  transition: background 0.2s, color 0.2s, border 0.2s;
   position: relative;
   overflow: hidden;
 }
@@ -59,14 +66,15 @@
 }
 
 .hero-btn.primary:hover {
-  background: #1976d2;
-  color: #fff;
+  background: #67c090; /* Medium Green */
+  color: #124170; /* Dark Blue */
+  border: 2px solid #67c090;
 }
 
 .hero-btn.secondary {
-  background: transparent;
-  color: #00e6a8;
-  border: 2px solid #00e6a8;
+  background: #67c090; /* Medium Green */
+  color: #ffffff; /* White */
+  border: 2px solid #67c090; /* Medium Green */
   transition: background 0.2s, color 0.2s, border 0.2s;
   position: relative;
   overflow: hidden;
@@ -88,15 +96,16 @@
 }
 
 .hero-btn.secondary:hover {
-  background: #00e6a8;
-  color: #181c2f;
-  border: 2px solid #00e6a8;
+  background: #ddf4e7; /* Light Mint */
+  color: #124170; /* Dark Blue */
+  border: 2px solid #ddf4e7;
 }
 
 /* Pulse animation for CTA buttons */
 @keyframes pulse {
   0% {
-    box-shadow: 0 6px 20px rgba(0, 230, 168, 0.4), 0 0 0 0 rgba(0, 230, 168, 0.7);
+    box-shadow: 0 6px 20px rgba(103, 192, 144, 0.4),
+      0 0 0 0 rgba(103, 192, 144, 0.7);
   }
   70% {
     box-shadow: 0 6px 20px rgba(0, 230, 168, 0.4), 0 0 0 10px rgba(0, 230, 168, 0);
@@ -111,7 +120,6 @@
     font-size: 1.2rem;
   }
   .closing-cta-buttons {
-    flex-direction: column;
     gap: 0.8rem;
   }
 }
