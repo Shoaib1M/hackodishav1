@@ -1,0 +1,92 @@
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #242424;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+.card {
+	background-color: #1a1a1a;
+	padding: 2em;
+	border-radius: 8px;
+	margin-top: 2rem;
+}
+
+.input-section {
+	margin-bottom: 1rem;
+}
+
+button {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: #333;
+	cursor: pointer;
+	transition: border-color 0.25s;
+	margin-left: 10px;
+}
+
+button:hover {
+	border-color: #646cff;
+}
+
+.stop-button {
+	background-color: #ff4136;
+}
+
+.results {
+	text-align: left;
+}
+
+.decibel-display {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.decibel-display span {
+	font-weight: bold;
+}
+
+.safety-tips li.danger {
+	color: #ff4136;
+}
+
+.safety-tips li.caution {
+	color: #ff851b;
+}
+
+.safety-tips li.safe {
+	color: #2ecc40;
+}
+
+.chart-image {
+	max-width: 100%;
+	height: auto;
+	margin-top: 1rem;
+	border-radius: 8px;
+}
+
+.error {
+	color: #ff4136;
+	border: 1px solid #ff4136;
+}
