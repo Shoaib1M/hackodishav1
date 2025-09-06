@@ -35,6 +35,14 @@
   gap: 2rem;
   margin: 0;
   padding: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar.slide-out .desktop-nav {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .desktop-nav li {
@@ -91,6 +99,14 @@
   cursor: pointer;
   padding: 0;
   z-index: 1001;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar.slide-out .hamburger {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .hamburger-line {
@@ -126,6 +142,14 @@
   z-index: 1000;
   padding: 80px 0 0 0;
   display: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar.slide-out .mobile-menu {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .mobile-nav-links {

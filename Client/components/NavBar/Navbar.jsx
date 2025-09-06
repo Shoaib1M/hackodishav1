@@ -6,6 +6,10 @@ import "./Navbar.css";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isSlidingOut, setIsSlidingOut] = useState(() => {
+    // Initialize with global state to prevent blinking
+    return window.navbarHidden === true;
+  });
   const location = useLocation();
 
   // Scroll spy functionality
@@ -13,16 +17,37 @@ function Navbar() {
     const handleScroll = () => {
       const sections = ["hero", "about", "quick-demo", "working", "contact"];
       const scrollPosition = window.scrollY + 100;
+      let activeSection = "";
 
-      for (const section of sections) {
+      // Check each section
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
+          
+          // For the last section (contact), use a different condition
+          if (i === sections.length - 1) {
+            // If we're in the last section or past it, highlight the last section
+            if (scrollPosition >= offsetTop) {
+              activeSection = section;
+              console.log(`Contact section: scrollPosition=${scrollPosition}, offsetTop=${offsetTop}, height=${offsetHeight}`);
+            }
+          } else {
+            // For other sections, use the normal condition
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              activeSection = section;
+              break;
+            }
           }
+        } else {
+          console.log(`Section ${section} not found`);
         }
+      }
+      
+      console.log(`Active section: ${activeSection}, scroll position: ${scrollPosition}`);
+      if (activeSection) {
+        setActiveSection(activeSection);
       }
     };
 
@@ -37,6 +62,21 @@ function Navbar() {
     setIsMenuOpen(false);
   }, [location]);
 
+
+  // Function to trigger navbar slide-out
+  const triggerSlideOut = () => {
+    setIsSlidingOut(true);
+    window.navbarHidden = true;
+  };
+
+  // Expose the function globally
+  useEffect(() => {
+    window.triggerNavbarSlideOut = triggerSlideOut;
+    return () => {
+      delete window.triggerNavbarSlideOut;
+    };
+  }, []);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -48,6 +88,14 @@ function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const handleLogoClick = () => {
+    // If links are slid out, slide them back in
+    if (isSlidingOut) {
+      setIsSlidingOut(false);
+      window.navbarHidden = false;
+    }
+  };
+
   const navItems = [
     { id: "hero", label: "Home", href: "#hero" },
     { id: "about", label: "About", href: "#about" },
@@ -57,8 +105,8 @@ function Navbar() {
   ];
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="logo">
+    <nav className={`navbar ${isSlidingOut ? 'slide-out' : ''}`}>
+      <Link to="/" className="logo" onClick={handleLogoClick}>
         NoiseLens
       </Link>
 

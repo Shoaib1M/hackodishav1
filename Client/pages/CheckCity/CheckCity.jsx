@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Navbar from "../../components/NavBar/Navbar.jsx";
 import "./CheckCity.css";
 
 function CheckCity() {
@@ -86,6 +87,7 @@ function CheckCity() {
 
   return (
     <div className="app">
+      <Navbar />
       <h1>🌍 Global Air Quality Monitor</h1>
 
       {/* ✅ AQI World Heatmap */}

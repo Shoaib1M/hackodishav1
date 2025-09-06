@@ -95,7 +95,14 @@ const Hero = () => {
   const navigate = useNavigate();
 
   function handleClick1() {
-    navigate("/checkcity");
+    // Trigger navbar slide-out animation
+    if (window.triggerNavbarSlideOut) {
+      window.triggerNavbarSlideOut();
+    }
+    // Navigate after a delay to allow animation to start
+    setTimeout(() => {
+      navigate("/checkcity");
+    }, 200);
   }
   function handleClick2() {
     navigate("/checkfile");
