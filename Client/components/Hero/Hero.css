@@ -179,16 +179,16 @@
   }
 }
 
-.hero-btn.primary {
+.hero-btn.primary-cta {
   background: #67C090; /* Medium Green */
   color: #FFFFFF; /* White */
   box-shadow: 0 4px 15px rgba(103, 192, 144, 0.3);
 }
 
-.hero-btn.primary:hover {
+.hero-btn.primary-cta:hover {
   background: #DDF4E7; /* Light Mint */
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(103, 192, 144, 0.4);
+  box-shadow: 0 6px 20px rgba(103, 192, 144, 0.4); color: #124170; /* Dark Blue */
 }
 
 .hero-btn.secondary {

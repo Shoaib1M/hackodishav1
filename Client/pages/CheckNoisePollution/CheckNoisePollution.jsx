@@ -112,7 +112,7 @@ function CheckNoisePollution() {
   return (
     <>
       <Navbar />
-      <div className="check-city-page">
+      <div className="check-city-page noise-pollution-page">
         <h1 className="page-title">Noise Pollution Monitor</h1>
 
         {/* Map */}

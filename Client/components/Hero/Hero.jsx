@@ -129,7 +129,7 @@ const Hero = () => {
             <span className="highlight-akash">Akash Cloud</span>
           </p>
           <div className="hero-cta">
-            <button onClick={handleClick1} className="hero-btn primary">
+            <button onClick={handleClick1} className="hero-btn primary-cta">
               View City AQI
             </button>
             <button onClick={handleClick2} className="hero-btn secondary">
@@ -141,7 +141,7 @@ const Hero = () => {
             <button onClick={handleClick4} className="hero-btn secondary">
               Trash Detector
             </button>
-            <button onClick={handleClick4} className="hero-btn secondary">
+            <button onClick={handleClick5} className="hero-btn secondary">
               Land Pollution Stats
             </button>
           </div>

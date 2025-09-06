@@ -15,25 +15,40 @@
   font-family: "Fredoka", sans-serif;
 }
 
-.demo-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+.demo-carousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  height: 500px; /* Reduced height after removing dots */
+  position: relative;
+  left: -30px; /* Nudge the carousel slightly to the left */
+}
+
+.demo-carousel {
+  position: relative;
+  width: 350px; /* Width of the center card */
+  height: 450px; /* Height of the center card */
+  perspective: 1500px; /* For 3D effect if I want to add rotation later */
+  flex-shrink: 0; /* Prevent the container from collapsing */
 }
 
 .demo-card {
+  /* position: absolute is now handled by inline style in the component */
   background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
 }
 
 .demo-card::before {
@@ -46,9 +61,14 @@
   background: #67C090; /* Medium Green */
 }
 
+/* No hover effect needed for carousel cards */
 .demo-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.demo-card.clickable {
+  cursor: pointer;
 }
 
 .demo-card h3 {
@@ -75,6 +95,7 @@
   position: relative;
   overflow: hidden;
   font-family: "Baloo 2", sans-serif;
+  flex-grow: 1; /* Allow placeholder to grow */
 }
 
 .demo-avg {
@@ -107,6 +128,17 @@
   font-family: "Baloo 2", sans-serif;
 }
 
+.demo-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.demo-btn:disabled:hover {
+  transform: none;
+  background-color: #ccc;
+}
+
 .demo-btn::before {
   content: "";
   position: absolute;
@@ -131,7 +163,7 @@
   }
 }
 
-.demo-btn:hover {
+.demo-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(103, 192, 144, 0.4);
   background: #DDF4E7; /* Light Mint */
@@ -151,11 +183,13 @@
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+  .demo-carousel-wrapper {
+    height: 450px;
+  }
 
-  .demo-cards {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0 1rem;
+  .demo-carousel {
+    width: 280px;
+    height: 400px;
   }
 
   .demo-card {

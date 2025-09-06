@@ -12,40 +12,31 @@ function Navbar() {
   // Scroll spy functionality
   useEffect(() => {
     const handleScroll = () => {
+      // Check if scrolled to the very bottom of the page
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2; // 2px buffer
+
+      if (isAtBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
       const sections = ["hero", "about", "quick-demo", "working", "contact"];
       const scrollPosition = window.scrollY + 100;
-      let activeSection = "";
+      let currentSection = "";
 
-      // Check each section
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const element = document.getElementById(section);
+      // Find the current section by iterating from the bottom up
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
+        const element = document.getElementById(sectionId);
         if (element) {
-          const { offsetTop, offsetHeight } = element;
-          
-          // For the last section (contact), use a different condition
-          if (i === sections.length - 1) {
-            // If we're in the last section or past it, highlight the last section
-            if (scrollPosition >= offsetTop) {
-              activeSection = section;
-              console.log(`Contact section: scrollPosition=${scrollPosition}, offsetTop=${offsetTop}, height=${offsetHeight}`);
-            }
-          } else {
-            // For other sections, use the normal condition
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-              activeSection = section;
-              break;
-            }
+          if (scrollPosition >= element.offsetTop) {
+            currentSection = sectionId;
+            break;
           }
-        } else {
-          console.log(`Section ${section} not found`);
         }
       }
       
-      console.log(`Active section: ${activeSection}, scroll position: ${scrollPosition}`);
-      if (activeSection) {
-        setActiveSection(activeSection);
-      }
+      setActiveSection(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);

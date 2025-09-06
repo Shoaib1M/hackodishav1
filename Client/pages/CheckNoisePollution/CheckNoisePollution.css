@@ -3,6 +3,10 @@
 /* Inherits most styles from CheckCity.css */
 
 /* Specific overrides or additions for the noise pollution page */
+.noise-pollution-page {
+  background-image: linear-gradient(rgba(18, 65, 112, 0.85), rgba(38, 102, 127, 0.85)), url('https://images.pexels.com/photos/18505237/pexels-photo-18505237.jpeg');
+}
+
 .leaflet-map {
   height: 100%;
   width: 100%;
