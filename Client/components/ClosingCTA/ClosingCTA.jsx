@@ -29,6 +29,10 @@ const ClosingCTA = () => {
     navigate("/trash-detector");
   };
 
+  const handleLandPollutionStatsClick = () => {
+    navigate("/land-pollution-stats");
+  };
+
   return (
     <section className="closing-cta-section">
       <div className="closing-cta-content">
@@ -40,6 +44,7 @@ const ClosingCTA = () => {
           <button onClick={handleAudioAnalysisClick} className="hero-btn secondary">Analyze My Audio</button>
           <button onClick={handleNoiseStatsClick} className="hero-btn secondary">View Noise Level Stats</button>
           <button onClick={handleTrashDetectorClick} className="hero-btn secondary">Trash Detector</button>
+          <button onClick={handleLandPollutionStatsClick} className="hero-btn secondary">Land Pollution Stats</button>
         </div>
       </div>
     </section>

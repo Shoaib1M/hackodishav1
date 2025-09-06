@@ -95,14 +95,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   function handleClick1() {
-    // Trigger navbar slide-out animation
-    if (window.triggerNavbarSlideOut) {
-      window.triggerNavbarSlideOut();
-    }
-    // Navigate after a delay to allow animation to start
-    setTimeout(() => {
-      navigate("/checkcity");
-    }, 200);
+    navigate("/checkcity");
   }
   function handleClick2() {
     navigate("/checkfile");
@@ -111,7 +104,11 @@ const Hero = () => {
     navigate("/checknoisepollution");
   }
   function handleClick4() {
-    navigate("/trash-detector");
+    navigate("/trash-detector"); 
+  }
+
+  function handleClick5() {
+    navigate("/land-pollution-stats");
   }
 
   return (
@@ -143,6 +140,9 @@ const Hero = () => {
             </button>
             <button onClick={handleClick4} className="hero-btn secondary">
               Trash Detector
+            </button>
+            <button onClick={handleClick4} className="hero-btn secondary">
+              Land Pollution Stats
             </button>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CheckNoisePollution.css";
+import Navbar from "../../components/NavBar/Navbar.jsx";
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import {
@@ -30,6 +31,14 @@ function getColor(value) {
   if (value < 70) return "orange";
   return "red";
 }
+
+const LoadingSpinner = () => (
+  <div className="loading-container">
+    <div className="spinner"></div>
+    <p>Loading Noise Data...</p>
+  </div>
+);
+
 
 function CheckNoisePollution() {
   const [data, setData] = useState([]);
@@ -79,33 +88,35 @@ function CheckNoisePollution() {
   }, [selectedStation, data]);
 
   if (loading) {
-    return (
-      <div className="noise-container">
-        <h2>Loading data...</h2>
-      </div>
-    );
+    return <div className="check-city-page"><LoadingSpinner /></div>;
   }
 
   if (error) {
     return (
-      <div className="noise-container">
-        <h2>Error loading data</h2>
-        <p>
-          Could not fetch noise pollution data. Please ensure the server is
-          running and try again.
-        </p>
-        <pre style={{ color: "red" }}>{error.message}</pre>
+      <>
+      <Navbar />
+      <div className="check-city-page error-page">
+        <div className="aqi-card">
+          <h2>Error Loading Data</h2>
+          <p>
+            Could not fetch noise pollution data. Please ensure the server is
+            running and try again.
+          </p>
+          <pre style={{ color: "#ff8a8a" }}>{error.message}</pre>
+        </div>
       </div>
+      </>
     );
   }
 
   return (
-    <div className="noise-container">
-      <h1>Noise Pollution in India</h1>
+    <>
+      <Navbar />
+      <div className="check-city-page">
+        <h1 className="page-title">Noise Pollution Monitor</h1>
 
-      {/* Map ABOVE dropdown */}
-      <div className="map-container">
-        <h2>Noise Pollution Heatmap</h2>
+        {/* Map */}
+        <div id="map" className="aqi-map">
         <MapContainer
           center={[20.5937, 78.9629]}
           zoom={5}
@@ -149,69 +160,53 @@ function CheckNoisePollution() {
         </MapContainer>
       </div>
 
-      {/* Dropdown BELOW map */}
-      <div className="dropdown-container">
-        <select
-          value={selectedStation}
-          onChange={(e) => setSelectedStation(e.target.value)}
-        >
-          {stations.map((station) => (
-            <option key={station} value={station}>
-              {station}
-            </option>
-          ))}
-        </select>
-      </div>
+        {/* Controls Bar */}
+        <div className="controls-bar">
+          <div className="dropdowns">
+            <select
+              value={selectedStation}
+              onChange={(e) => setSelectedStation(e.target.value)}
+            >
+              {stations.map((station) => (
+                <option key={station} value={station}>
+                  {station}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-      {/* Noise Chart */}
-      <div className="chart-container">
-        <h2>Noise Levels (dB) - {selectedStation}</h2>
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={filteredData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="Year"
-              label={{ value: "Years", position: "insideBottom", offset: -5 }}
-            />
-            <YAxis
-              label={{
-                value: "Decibels (dB)",
-                angle: -90,
-                position: "insideLeft",
-              }}
-            />
-            <ReTooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="Day"
-              stroke="#ff9800"
-              name="Day dB"
-            />
-            <Line
-              type="monotone"
-              dataKey="Night"
-              stroke="#2196f3"
-              name="Night dB"
-            />
-            <Line
-              type="monotone"
-              dataKey="DayLimit"
-              stroke="#4caf50"
-              name="Day Limit"
-              strokeDasharray="5 5"
-            />
-            <Line
-              type="monotone"
-              dataKey="NightLimit"
-              stroke="#f44336"
-              name="Night Limit"
-              strokeDasharray="5 5"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        {/* Noise Chart */}
+        <div className="chart-container">
+          <h2>Noise Levels (dB) - {selectedStation}</h2>
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={filteredData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
+              <XAxis
+                dataKey="Year"
+                label={{ value: "Years", position: "insideBottom", offset: -5 }}
+                tick={{ fill: '#e0e0e0' }}
+              />
+              <YAxis
+                label={{
+                  value: "Decibels (dB)",
+                  angle: -90,
+                  position: "insideLeft",
+                  fill: '#e0e0e0'
+                }}
+                tick={{ fill: '#e0e0e0' }}
+              />
+              <ReTooltip contentStyle={{ backgroundColor: 'rgba(30, 30, 30, 0.8)', border: '1px solid #555' }} />
+              <Legend />
+              <Line type="monotone" dataKey="Day" stroke="#ffc107" name="Day dB" />
+              <Line type="monotone" dataKey="Night" stroke="#03a9f4" name="Night dB" />
+              <Line type="monotone" dataKey="DayLimit" stroke="#4caf50" name="Day Limit" strokeDasharray="5 5" />
+              <Line type="monotone" dataKey="NightLimit" stroke="#f44336" name="Night Limit" strokeDasharray="5 5" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
