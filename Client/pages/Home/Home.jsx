@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../../components/NavBar/Navbar.jsx";
 import Hero from "../../components/Hero/Hero.jsx";
 import About from "../../components/About/About.jsx";
 import Demo from "../../components/Demo/Demo.jsx";
@@ -9,6 +10,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 const Home = () => {
   return (
     <div>
+      <Navbar />
       <Hero />
       <About />
       <Demo />

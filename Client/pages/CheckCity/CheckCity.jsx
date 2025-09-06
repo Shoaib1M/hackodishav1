@@ -427,6 +427,7 @@ import {
 } from "recharts";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Navbar from "../../components/NavBar/Navbar.jsx";
 import "./CheckCity.css";
 
 function CheckCity() {
@@ -449,7 +450,9 @@ function CheckCity() {
 
       // AQI overlay
       L.tileLayer(
-        "https://tiles.aqicn.org/tiles/usepa-aqi/{z}/{x}/{y}.png?token=d590c44ddff6390902a11009e9f9abb08dc18a5c",
+        `https://tiles.aqicn.org/tiles/usepa-aqi/{z}/{x}/{y}.png?token=${
+          import.meta.env.VITE_AQI_TOKEN
+        }`,
         {
           attribution:
             'Air Quality data © <a href="https://waqi.info/">waqi.info</a>',
@@ -458,9 +461,12 @@ function CheckCity() {
     }
   }, []);
 
+  // Fetch list of stations for a country
+  // Fetch list of stations for a country
+  // Fetch list of stations for a country
   const fetchCities = async (countryName) => {
     try {
-      const response = await fetch(`/api/countries/${countryName}`);
+      const response = await fetch(`/api/countries/${countryCode}`);
       const data = await response.json();
       const uniqueCities = {};
       (data.cities || []).forEach((c) => {
@@ -493,21 +499,29 @@ function CheckCity() {
   };
 
   return (
-    <div className="aqi-container">
-      <h1 className="aqi-title">🌍 Global Air Quality Dashboard</h1>
+    <div className="app">
+      <h1>🌍 Global Air Quality Monitor</h1>
 
-      {/* Filters */}
-      <div className="aqi-filters">
-        <select
-          value={country}
-          onChange={(e) => {
-            setCountry(e.target.value);
-            setCities([]);
-            setCityUid("");
-            setAqiData(null);
-            fetchCities(e.target.value);
-          }}
-        >
+      {/* ✅ AQI World Heatmap */}
+      <div id="map" className="aqi-map"></div>
+
+      {/* ✅ AQI Legend Heatmap */}
+      <div className="aqi-legend">
+        <h3>AQI Heatmap Scale</h3>
+        <div className="aqi-gradient"></div>
+        <div className="aqi-labels">
+          <span>0–50 Good</span>
+          <span>51–100 Moderate</span>
+          <span>101–150 Sensitive</span>
+          <span>151–200 Unhealthy</span>
+          <span>201–300 Very Unhealthy</span>
+          <span>301+ Hazardous</span>
+        </div>
+      </div>
+
+      {/* Dropdowns */}
+      <div className="dropdowns">
+        <select value={country} onChange={handleCountryChange}>
           <option value="">Select Country</option>
           <option value="India">India</option>
           <option value="USA">USA</option>
@@ -516,10 +530,7 @@ function CheckCity() {
 
         <select
           value={cityUid}
-          onChange={(e) => {
-            setCityUid(e.target.value);
-            fetchCityData(e.target.value);
-          }}
+          onChange={handleCityChange}
           disabled={!cities.length}
         >
           <option value="">Select City</option>
@@ -531,66 +542,38 @@ function CheckCity() {
         </select>
       </div>
 
-      {/* Map */}
-      <div className="map-wrapper">
-        <div id="map" className="aqi-map"></div>
-        <p className="legend">
-          Legend: AQI colors show pollution levels (green = good, red =
-          hazardous)
-        </p>
-      </div>
-
-      {/* AQI Details + Chart */}
+      {/* City AQI Card */}
       {aqiData && (
-        <div ref={detailsRef} className="aqi-details">
-          <div className={`aqi-info ${getAQILevel(aqiData.aqi)}`}>
-            <h2>{aqiData.city.name}</h2>
-            <p>
-              <strong>AQI:</strong> {aqiData.aqi} ({getAQIMessage(aqiData.aqi)})
-            </p>
-            <p>
-              <strong>Pollutant:</strong> {aqiData.dominentpol}
-            </p>
-            <p>
-              <strong>Updated:</strong> {aqiData.time.s}
-            </p>
-            <p className="advice">{getAQIAdvice(aqiData.aqi)}</p>
-          </div>
+        <div className={`aqi-card level-${getAQILevel(aqiData.aqi)}`}>
+          <h2>{aqiData.city.name}</h2>
+          <p>
+            <strong>AQI:</strong> {aqiData.aqi} ({getAQIMessage(aqiData.aqi)})
+          </p>
+          <p>
+            <strong>Dominant Pollutant:</strong> {aqiData.dominentpol}
+          </p>
+          <p>
+            <strong>Last Updated:</strong> {aqiData.time.s}
+          </p>
+          <p className="advice">{getAQIAdvice(aqiData.aqi)}</p>
+        </div>
+      )}
 
-          {aqiData.forecast?.daily?.pm25 && (
-            <div className="chart-card">
-              <h2>PM2.5 Forecast</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={aqiData.forecast.daily.pm25}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="day" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line
-                    type="monotone"
-                    dataKey="min"
-                    stroke="#82ca9d"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="avg"
-                    stroke="#8884d8"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="max"
-                    stroke="#ff4d4f"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          )}
+      {/* AQI Chart */}
+      {aqiData && aqiData.forecast?.daily?.pm25 && (
+        <div className="chart-container">
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={aqiData.forecast.daily.pm25}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="min" stroke="#8884d8" />
+              <Line type="monotone" dataKey="avg" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="max" stroke="#ff4d4f" />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       )}
     </div>
