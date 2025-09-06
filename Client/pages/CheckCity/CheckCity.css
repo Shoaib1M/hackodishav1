@@ -1,121 +1,72 @@
-body {
-  font-family: "Poppins", sans-serif;
-  background: #1e1e1e;
-  color: white;
-  text-align: center;
+.aqi-container {
+  max-width: 1200px;
+  margin: auto;
   padding: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
-h1 {
+.aqi-title {
+  text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-/* Map container */
-.aqi-map {
-  height: 600px;
-  width: 100%;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
-
-.dropdowns {
+.aqi-filters {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 select {
   padding: 10px 15px;
-  font-size: 1rem;
   border-radius: 8px;
-  border: none;
-  outline: none;
-  background: #2e2e2e;
-  color: white;
+  border: 1px solid #ccc;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-select:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.aqi-card {
-  padding: 20px;
-  border-radius: 16px;
+.map-wrapper {
   margin: 20px auto;
-  max-width: 500px;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.aqi-card h2 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-.advice {
-  font-style: italic;
-  margin-top: 10px;
-}
-
-/* AQI Colors */
-.level-good { background: #4caf50; }
-.level-moderate { background: #ffeb3b; color: black; }
-.level-unhealthy-sensitive { background: #ff9800; }
-.level-unhealthy { background: #f44336; }
-.level-very-unhealthy { background: #9c27b0; }
-.level-hazardous { background: #6d0000; }
-
-/* Chart styling */
-.chart-container {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-select option {
-  background: #1e1e1e;
-  color: white;
-}
-
-/* AQI Legend */
-.aqi-legend {
-  margin-bottom: 20px;
   text-align: center;
 }
 
-.aqi-legend h3 {
-  margin-bottom: 8px;
-  font-size: 1.2rem;
-  font-weight: 600;
+.aqi-map {
+  height: 600px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.aqi-gradient {
-  height: 20px;
-  border-radius: 10px;
-  background: linear-gradient(
-    to right,
-    #00e400,   /* Good */
-    #ffff00,   /* Moderate */
-    #ff7e00,   /* Unhealthy for Sensitive */
-    #ff0000,   /* Unhealthy */
-    #8f3f97,   /* Very Unhealthy */
-    #7e0023    /* Hazardous */
-  );
-  margin: 0 auto 6px auto;
-  max-width: 600px;
+.legend {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
 }
 
-.aqi-labels {
+.aqi-details {
+  margin-top: 40px;
   display: flex;
-  justify-content: space-between;
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 0.85rem;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aqi-info {
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.aqi-info.good { background: #d4f7d4; }
+.aqi-info.moderate { background: #fff7d4; }
+.aqi-info.sensitive { background: #ffe4b2; }
+.aqi-info.unhealthy { background: #ffd6d6; }
+.aqi-info.very-unhealthy { background: #f3d1ff; }
+.aqi-info.hazardous { background: #e4b2b2; color: white; }
+
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
