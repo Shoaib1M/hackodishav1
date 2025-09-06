@@ -1,41 +1,51 @@
-.noise-container {
-  padding: 20px;
-  color: white;
-  text-align: center;
-}
+@import url('../CheckCity/CheckCity.css');
 
-.dropdown-container {
-  margin: 20px auto;
-}
+/* Inherits most styles from CheckCity.css */
 
-select {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  background: #2e2e2e;
-  color: white;
-  cursor: pointer;
-}
-
-.chart-container {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  margin: 20px auto;
-  color: black;
-  max-width: 1500px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.map-container {
-  margin-bottom: 30px;
-}
-
+/* Specific overrides or additions for the noise pollution page */
 .leaflet-map {
-  height: 700px;
+  height: 100%;
   width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 12px; /* Match card border-radius */
+}
+
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top */
+}
+
+/* Loading Spinner Styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+}
+
+.spinner {
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top: 6px solid #67c090;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loading-container p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

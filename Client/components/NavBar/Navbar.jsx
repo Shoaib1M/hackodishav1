@@ -6,9 +6,7 @@ import "./Navbar.css";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [showNavLinks, setShowNavLinks] = useState(
-    () => window.navLinksHidden !== true
-  );
+  const [showNavLinks, setShowNavLinks] = useState(true);
   const location = useLocation();
 
   // Scroll spy functionality
@@ -56,25 +54,19 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Show/hide nav links based on the current page
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setShowNavLinks(true);
+    } else {
+      setShowNavLinks(false);
+    }
+  }, [location.pathname]);
+
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
-
-
-  // Function to trigger navbar slide-out
-  const triggerSlideOut = () => {
-    setShowNavLinks(false);
-    window.navLinksHidden = true;
-  };
-
-  // Expose the function globally
-  useEffect(() => {
-    window.triggerNavbarSlideOut = triggerSlideOut;
-    return () => {
-      window.triggerNavbarSlideOut = undefined;
-    };
-  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -88,9 +80,6 @@ function Navbar() {
   };
 
   const handleLogoClick = (e) => {
-    // If links are hidden, show them
-    setShowNavLinks(true);
-    window.navLinksHidden = false;
 
     // If we are already on the home page, prevent default link behavior
     // and just do a smooth scroll.
@@ -151,6 +140,7 @@ function Navbar() {
       >
         <motion.span
           className="hamburger-line"
+          style={{ originX: "center" }}
           animate={{
             rotate: isMenuOpen ? 45 : 0,
             y: isMenuOpen ? 6 : 0,
@@ -166,6 +156,7 @@ function Navbar() {
         />
         <motion.span
           className="hamburger-line"
+          style={{ originX: "center" }}
           animate={{
             rotate: isMenuOpen ? -45 : 0,
             y: isMenuOpen ? -6 : 0,
