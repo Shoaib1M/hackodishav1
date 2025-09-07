@@ -104,7 +104,7 @@ const Hero = () => {
     navigate("/checknoisepollution");
   }
   function handleClick4() {
-    navigate("/trash-detection");
+    navigate("/checkimage");
   }
 
   function handleClick5() {
