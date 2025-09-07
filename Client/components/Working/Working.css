@@ -46,7 +46,8 @@
 }
 .main-card:hover { transform: translateY(-6px); }
 .main-card.dim { opacity: 0.5; }
-.main-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.main-icon { display: block; margin-bottom: 0.5rem; }
+.main-icon img { width: 36px; height: 36px; object-fit: contain; display: inline-block; }
 .main-title { font-family: "Fredoka", sans-serif; color: #26667f; font-weight: 700; }
 
 /* Detail view */
@@ -116,11 +117,8 @@
   box-shadow: 0 12px 40px rgba(103, 192, 144, 0.3);
 }
 
-.working-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
+.working-icon { margin-bottom: 1rem; display: block; }
+.working-icon img { width: 44px; height: 44px; object-fit: contain; display: inline-block; }
 
 .working-step-title {
   font-size: 1.3rem;
@@ -165,6 +163,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
+  width: 140px; /* ensure equal card widths across all tech items */
+  box-sizing: border-box;
   border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -179,10 +179,8 @@
   box-shadow: 0 6px 20px rgba(103, 192, 144, 0.2);
 }
 
-.tech-emoji {
-  font-size: 2.5rem;
-  display: block;
-}
+.tech-img { width: 42px; height: 42px; object-fit: contain; display: block; }
+.tech-label { text-align: center; max-width: 100%; }
 
 .tech-label {
   font-size: 1rem;

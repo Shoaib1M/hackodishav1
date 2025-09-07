@@ -1,21 +1,35 @@
 import React, { useState, useRef } from "react";
+import cityImg from "../../assets/city.png";
+import analysisImg from "../../assets/analysis.png";
+import voiceSearchImg from "../../assets/voice-search.png";
+import folderImg from "../../assets/folder.png";
+import mapImg from "../../assets/map.png";
+import magnifyImg from "../../assets/magnifying glass.png";
+import securityImg from "../../assets/security.png";
+import warningImg from "../../assets/warning.png";
+import aiImg from "../../assets/ai.png";
+import rewardImg from "../../assets/reward.png";
+import reactLogo from "../../assets/react.png";
+import flaskLogo from "../../assets/flask.png";
+import mongoLogo from "../../assets/mongodb.png";
+import akashLogo from "../../assets/akash.png";
 import "./Working.css";
 
 const cityFlow = [
   {
-    icon: "🌆",
+    iconSrc: cityImg,
     title: "Select City",
     desc: "Pick your city from the dropdown menu.",
     example: "Example: New Delhi, Bangalore, etc.",
   },
   {
-    icon: "📊",
+    iconSrc: analysisImg,
     title: "Load Dataset",
     desc: "We show a preloaded chart of day vs night noise levels.",
     example: "Graph/heatmap appears with static data.",
   },
   {
-    icon: "⚠️",
+    iconSrc: rewardImg,
     title: "Insights",
     desc: "See how your city compares to WHO safe limits.",
     example: "Avg: 78 dB (30% above safe level).",
@@ -24,19 +38,19 @@ const cityFlow = [
 
 const audioFlow = [
   {
-    icon: "🎤",
+    iconSrc: folderImg,
     title: "Upload",
     desc: "Upload an audio file ",
     example: "upload a wav file",
   },
   {
-    icon: "🤖",
+    iconSrc: aiImg,
     title: "Simulated AI Analysis",
     desc: "NoiseLens (simulated AI) classifies sound type and estimates decibel level.",
     example: "Detected: Traffic Noise, 78 dB.",
   },
   {
-    icon: "🛡️",
+    iconSrc: securityImg,
     title: "Safety Tips",
     desc: "Get instant advice on safe exposure times and protection methods.",
     example: "Limit exposure to <2 hours/day.",
@@ -45,19 +59,19 @@ const audioFlow = [
 
 const noiseFlow = [
   {
-    icon: "📁",
+    iconSrc: folderImg,
     title: "Upload Recording",
     desc: "Choose a recorded sound file (WAV/MP3) to analyze.",
     example: "traffic.wav, factory.mp3",
   },
   {
-    icon: "🤖",
+    iconSrc: aiImg,
     title: "Run Analysis",
     desc: "The model classifies sound type and estimates decibel level.",
     example: "Detected: Traffic Noise, 78 dB",
   },
   {
-    icon: "🧩",
+    iconSrc: warningImg,
     title: "Recommendations",
     desc: "Get health guidance based on the analyzed exposure level.",
     example: "Use ear protection >85 dB",
@@ -66,19 +80,19 @@ const noiseFlow = [
 
 const landFlow = [
   {
-    icon: "🗺️",
+    iconSrc: magnifyImg,
     title: "Pick State",
     desc: "Choose a state to load its yearly land-waste dataset.",
     example: "Manipur, Kerala, Maharashtra, ...",
   },
   {
-    icon: "📊",
+    iconSrc: analysisImg,
     title: "Trends Chart",
     desc: "View generated, collected, treated, and landfilled waste.",
     example: "Multi-line chart updates instantly.",
   },
   {
-    icon: "🔎",
+    iconSrc: rewardImg,
     title: "Compare & Learn",
     desc: "Identify gaps and improvements across years for policy insights.",
     example: "Collection ↑, Landfill ↓",
@@ -87,19 +101,19 @@ const landFlow = [
 
 const aqiFlow = [
   {
-    icon: "🗺️",
+    iconSrc: mapImg,
     title: "Explore Map",
     desc: "Pan/zoom a global AQI heatmap overlay.",
     example: "World view with AQI tiles.",
   },
   {
-    icon: "🏙️",
+    iconSrc: magnifyImg,
     title: "Select Station",
     desc: "Choose a country and city station to fetch live AQI.",
     example: "Dominant pollutant + last updated",
   },
   {
-    icon: "📉",
+    iconSrc: analysisImg,
     title: "Forecast",
     desc: "View PM2.5 min/avg/max trends to plan ahead.",
     example: "Chart for upcoming days",
@@ -128,19 +142,19 @@ const TechHighlight = () => (
   <section className="tech-section" id="tech">
     <div className="tech-logos">
       <span className="tech-logo" title="React">
-        <span className="tech-emoji">⚛️</span>
+        <img className="tech-img" src={reactLogo} alt="React" />
         <span className="tech-label">React</span>
       </span>
       <span className="tech-logo" title="Flask">
-        <span className="tech-emoji">🐍</span>
+        <img className="tech-img" src={flaskLogo} alt="Flask" />
         <span className="tech-label">Flask</span>
       </span>
       <span className="tech-logo" title="MongoDB">
-        <span className="tech-emoji">🍃</span>
+        <img className="tech-img" src={mongoLogo} alt="MongoDB" />
         <span className="tech-label">MongoDB</span>
       </span>
       <span className="tech-logo" title="Akash">
-        <span className="tech-emoji">☁️</span>
+        <img className="tech-img" src={akashLogo} alt="Akash Network" />
         <span className="tech-label">Akash</span>
       </span>
     </div>
@@ -151,11 +165,11 @@ const TechHighlight = () => (
 );
 
 const mainCards = [
-  { key: "city", icon: "🌆", title: "City Noise Stats", steps: cityFlow },
-  { key: "audio", icon: "🎤", title: "Audio Analysis", steps: audioFlow },
-  { key: "noise", icon: "🔊", title: "Noise Pollution Monitor", steps: noiseFlow },
-  { key: "land", icon: "♻️", title: "Land Waste Insights", steps: landFlow },
-  { key: "aqi", icon: "🌍", title: "Global AQI Map", steps: aqiFlow },
+  { key: "city", iconSrc: cityImg, title: "City Noise Stats", steps: cityFlow },
+  { key: "audio", iconSrc: analysisImg, title: "Audio Analysis", steps: audioFlow },
+  { key: "noise", iconSrc: voiceSearchImg, title: "Noise Pollution Monitor", steps: noiseFlow },
+  { key: "land", iconSrc: folderImg, title: "Land Waste Insights", steps: landFlow },
+  { key: "aqi", iconSrc: mapImg, title: "Global AQI Map", steps: aqiFlow },
 ];
 
 const Working = () => {
@@ -197,7 +211,7 @@ const Working = () => {
               className={`main-card ${activeKey && activeKey !== c.key ? "dim" : ""}`}
               onClick={() => handleCardClick(c.key)}
             >
-              <span className="main-icon">{c.icon}</span>
+              <span className="main-icon"><img src={c.iconSrc} alt="" /></span>
               <span className="main-title">{c.title}</span>
             </button>
           ))}
@@ -209,7 +223,7 @@ const Working = () => {
               className={`main-card ${activeKey && activeKey !== c.key ? "dim" : ""}`}
               onClick={() => handleCardClick(c.key)}
             >
-              <span className="main-icon">{c.icon}</span>
+              <span className="main-icon"><img src={c.iconSrc} alt="" /></span>
               <span className="main-title">{c.title}</span>
             </button>
           ))}
@@ -227,7 +241,7 @@ const Working = () => {
               .find((c) => c.key === activeKey)
               ?.steps.map((step, idx) => (
                 <div className="working-card" key={idx}>
-                  <div className="working-icon">{step.icon}</div>
+                  <div className="working-icon">{step.iconSrc && (<img src={step.iconSrc} alt="" />)}</div>
                   <div className="working-step-title">{step.title}</div>
                   <div className="working-step-desc">{step.desc}</div>
                   {step.example && (
