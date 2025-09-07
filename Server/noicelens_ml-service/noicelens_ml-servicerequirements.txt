@@ -6,3 +6,4 @@ matplotlib
 tensorflow
 tensorflow_hub
 werkzeug
+guunicorn
