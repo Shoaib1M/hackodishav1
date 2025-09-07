@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { analyzeAudio } from "../../src/api";   // 👈 import from api.js in Client/src
+import Navbar from "../../components/NavBar/Navbar.jsx";
 import "./CheckFile.css";                  // 👈 adjust path if needed
 
 const CheckFile = () => {
@@ -58,72 +59,64 @@ const CheckFile = () => {
 	};
 
 	return (
-		<div className="container">
-			<header className="header">
-				<h1>NoiseLens AI</h1>
-				<p>Analyze sound from your environment</p>
-			</header>
+		<>
+			<Navbar />
+			<div className="container">
+				<header className="header">
+					<h1>Audio Analyzer</h1>
+					<p>Analyze sound from your environment</p>
+				</header>
 
-			<div className="card">
-				<h2>Upload or Record Audio</h2>
-				<div className="input-section">
-					<input type="file" accept="audio/*" onChange={(e) => setFile(e.target.files[0])} />
-					<button onClick={() => handleSubmit(file)} disabled={!file || analyzing}>
-						Analyze File
-					</button>
-				</div>
-				<div className="input-section">
-					{!recording ? (
-						<button onClick={startRecording} disabled={analyzing}>
-							Start Recording
+				<div className="card">
+					<h2>Upload or Record Audio</h2>
+					<div className="input-section">
+						<input type="file" accept="audio/*" onChange={(e) => setFile(e.target.files[0])} />
+						<button onClick={() => handleSubmit(file)} disabled={!file || analyzing}>
+							Analyze File
 						</button>
-					) : (
-						<button onClick={stopRecording} className="stop-button">
-							Stop Recording
-						</button>
-					)}
-				</div>
-			</div>
-
-			{analyzing && <div className="card"><p>Analyzing, please wait...</p></div>}
-			{error && <div className="card error"><p>{error}</p></div>}
-
-			{result && (
-				<div className="card results">
-					<h2>Analysis Results</h2>
-					<div className="decibel-display">
-						Approximate Decibel Level: <span>{result.decibel} dB</span>
 					</div>
-					<h3>Safety Precautions</h3>
-					<ul className="safety-tips">
-						{result.safety_tips.map((tip, idx) => (
-							<li
-								key={idx}
-								className={
-									result.decibel > 85 ? "danger" : result.decibel > 70 ? "caution" : "safe"
-								}
-							>
-								{tip}
-							</li>
-						))}
-					</ul>
-					<h3>Sound Classification</h3>
-					{result.chart_url ? (
-						<img src={result.chart_url} alt="Classification Chart" className="chart-image" />
-					) : (
-						<p>Chart not available.</p>
-					)}
-					<h4>Top Sounds Detected:</h4>
-					<ul>
-						{result.results.map(([cls, val]) => (
-							<li key={cls}>
-								{cls}: <strong>{val.toFixed(1)}%</strong>
-							</li>
-						))}
-					</ul>
 				</div>
-			)}
-		</div>
+
+				{analyzing && <div className="card"><p>Analyzing, please wait...</p></div>}
+				{error && <div className="card error"><p>{error}</p></div>}
+
+				{result && (
+					<div className="card results">
+						<h2>Analysis Results</h2>
+						<div className="decibel-display">
+							Approximate Decibel Level: <span>{result.decibel} dB</span>
+						</div>
+						<h3>Safety Precautions</h3>
+						<ul className="safety-tips">
+							{result.safety_tips.map((tip, idx) => (
+								<li
+									key={idx}
+									className={
+										result.decibel > 85 ? "danger" : result.decibel > 70 ? "caution" : "safe"
+									}
+								>
+									{tip}
+								</li>
+							))}
+						</ul>
+						<h3>Sound Classification</h3>
+						{result.chart_url ? (
+							<img src={result.chart_url} alt="Classification Chart" className="chart-image" />
+						) : (
+							<p>Chart not available.</p>
+						)}
+						<h4>Top Sounds Detected:</h4>
+						<ul>
+							{result.results.map(([cls, val]) => (
+								<li key={cls}>
+									{cls}: <strong>{val.toFixed(1)}%</strong>
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
+			</div>
+		</>
 	);
 };
 

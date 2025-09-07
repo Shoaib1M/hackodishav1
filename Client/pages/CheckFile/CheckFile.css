@@ -1,32 +1,37 @@
-:root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
-}
-
-body {
-	margin: 0;
-	display: flex;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
-}
-
+/* Page wrapper styles aligned with CheckCity */
 .container {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 2rem;
+	min-height: 100vh;
+	width: 100%;
+	margin: 0;
+	padding: 80px 2rem 2rem;
 	text-align: center;
+	background-color: #124170; /* Fallback */
+	background-image: linear-gradient(rgba(25, 52, 80, 0.85), rgba(25, 52, 80, 0.85)),
+		url('https://images.pexels.com/photos/459728/pexels-photo-459728.jpeg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-family: "Nunito", sans-serif;
+}
+
+/* Center main blocks to a wide readable column */
+.container > .header,
+.container > .card,
+.container > .results,
+.container > .error {
+	max-width: 1200px;
+	margin: 0 auto 1.5rem auto;
 }
 
 .card {
-	background-color: #1a1a1a;
-	padding: 2em;
-	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 1.5rem 2rem;
+	border-radius: 12px;
 	margin-top: 2rem;
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .input-section {
@@ -35,23 +40,26 @@ body {
 
 button {
 	border-radius: 8px;
-	border: 1px solid transparent;
+	border: 2px solid #67C090;
 	padding: 0.6em 1.2em;
-	font-size: 1em;
-	font-weight: 500;
-	font-family: inherit;
-	background-color: #333;
+	font-size: 1.05rem;
+	font-weight: 600;
+	font-family: "Lilita One", sans-serif;
+	background: transparent;
+	color: #FFFFFF;
 	cursor: pointer;
-	transition: border-color 0.25s;
+	transition: all 0.3s ease;
 	margin-left: 10px;
 }
 
 button:hover {
-	border-color: #646cff;
+	background: #67C090;
+	color: #124170;
 }
 
 .stop-button {
 	background-color: #ff4136;
+	border-color: #ff4136;
 }
 
 .results {
@@ -89,4 +97,26 @@ button:hover {
 .error {
 	color: #ff4136;
 	border: 1px solid #ff4136;
+}
+
+/* Header typography to match */
+.header h1 {
+	font-family: "Fredoka", sans-serif;
+	font-size: 2.6rem;
+	font-weight: 700;
+	margin: 0 0 0.3rem 0;
+}
+
+.header p {
+	margin: 0 0 1rem 0;
+	opacity: 0.9;
+}
+
+/* Inputs */
+.input-section input[type="file"] {
+	border: 2px dashed rgba(255,255,255,0.35);
+	border-radius: 8px;
+	padding: 0.6rem;
+	color: #fff;
+	background: rgba(255,255,255,0.06);
 }
