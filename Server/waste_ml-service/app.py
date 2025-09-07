@@ -10,8 +10,9 @@ import io
 app = Flask(__name__)
 CORS(app)  # Allow requests from React
 
-# Load your model
-model = YOLO("weights/best.pt")   # change if you want yoloooo.pt or yolov8n.pt
+# Load YOLO model from relative path
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "weights", "best.pt")
+model = YOLO(MODEL_PATH)
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -20,14 +21,14 @@ def predict():
 
     file = request.files["file"]
 
-    # Save file temporarily
+    # Save file temporarily in memory
     img_bytes = file.read()
     img = Image.open(io.BytesIO(img_bytes))
 
-    # Run prediction
+    # Run YOLO prediction
     results = model.predict(img, conf=0.4)
 
-    # Draw results
+    # Draw results on image
     res_plotted = results[0].plot()  # numpy array (BGR)
     res_rgb = cv2.cvtColor(res_plotted, cv2.COLOR_BGR2RGB)
 
@@ -41,4 +42,5 @@ def predict():
     )
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port, debug=False)

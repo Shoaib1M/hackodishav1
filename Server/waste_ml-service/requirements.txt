@@ -1,8 +1,6 @@
 flask
+flask-cors
 gunicorn
-streamlit
 ultralytics
 opencv-python-headless
-pafy
-youtube-dl
-Pillow
+pillow

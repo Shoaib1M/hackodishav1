@@ -4,15 +4,15 @@ import sys
 # Get the absolute path of the current file
 file_path = Path(__file__).resolve()
 
-# Get the parent directory of the current file
+# Root path = parent of this file (the project folder)
 root_path = file_path.parent
 
-# Add the root path to the sys.path list if it is not already there
+# Add root path to sys.path
 if root_path not in sys.path:
     sys.path.append(str(root_path))
 
-# Get the relative path of the root directory with respect to the current working directory
-ROOT = root_path.relative_to(Path.cwd())
+# Define ROOT for relative paths
+ROOT = root_path
 
 # Sources
 IMAGE = 'Image'
@@ -32,6 +32,7 @@ VIDEO_2_PATH = VIDEO_DIR / 'video_2.mp4'
 VIDEO_3_PATH = VIDEO_DIR / 'video_3.mp4'
 VIDEO_4_PATH = VIDEO_DIR / 'video_4.mp4'
 VIDEO_5_PATH = VIDEO_DIR / 'video_5.mp4'
+
 VIDEOS_DICT = {
     'video_1': VIDEO_1_PATH,
     'video_2': VIDEO_2_PATH,
@@ -40,9 +41,9 @@ VIDEOS_DICT = {
     'video_5': VIDEO_5_PATH,
 }
 
-# ML Model config
-MODEL_DIR = 'C:/Users/MY PC/Desktop/yolov8/yolov8-streamlit-detection-tracking/app/weights'
-DETECTION_MODEL = MODEL_DIR + 'yolov8 (1).pkl'
+# ML Model config (relative path to weights folder)
+MODEL_DIR = ROOT / 'weights'
+DETECTION_MODEL = MODEL_DIR / 'yolov8.pkl'
 
-# Webcam
+# Webcam (0 = default camera, but won’t work on Render)
 WEBCAM_PATH = 0
