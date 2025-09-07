@@ -108,7 +108,7 @@ function Navbar() {
     <nav className="navbar">
       <a href="/#hero" className="logo" onClick={handleLogoClick}>
         <img src={logoFinal} alt="SwachhSense Logo" className="logo-img" />
-        <span>SwachhSense</span>
+        <span>SwachhLens</span>
       </a>
 
       {/* Desktop Navigation */}
