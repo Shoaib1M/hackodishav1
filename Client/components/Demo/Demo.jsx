@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Demo.css";
+import aqiVideo from "../../assets/aqi.mp4";
+import audioVideo from "../../assets/audio.mp4";
+import noiseVideo from "../../assets/noise.mp4";
+import trashVideo from "../../assets/trash.mp4";
+import landVideo from "../../assets/land.mp4";
 
 const cardsData = [
   {
     title: "City AQI Stats",
     placeholder: "[AQI Heatmap Preview]",
+    videoSrc: aqiVideo,
     description: "Real-time air quality index.",
     path: "/checkcity",
     buttonText: "View City AQI",
@@ -14,6 +20,7 @@ const cardsData = [
   {
     title: "Audio Analysis",
     placeholder: "[Audio Upload Form]",
+    videoSrc: audioVideo,
     description: "Check noise levels from audio.",
     path: "/checkfile",
     buttonText: "Analyze My Audio",
@@ -21,6 +28,7 @@ const cardsData = [
   {
     title: "Noise Pollution Stats",
     placeholder: "[Noise Map Preview]",
+    videoSrc: noiseVideo,
     description: "Historical noise level data.",
     path: "/checknoisepollution",
     buttonText: "View Noise Stats",
@@ -28,6 +36,7 @@ const cardsData = [
   {
     title: "Trash Detector",
     placeholder: "[Image Upload Form]",
+    videoSrc: trashVideo,
     description: "Detect trash in images.",
     path: "/trash-detector",
     buttonText: "Try Trash Detector",
@@ -35,6 +44,7 @@ const cardsData = [
   {
     title: "Land Pollution Stats",
     placeholder: "[Data Visualization]",
+    videoSrc: landVideo,
     description: "Analyze land pollution trends.",
     path: "/land-pollution-stats",
     buttonText: "View Land Stats",
@@ -84,7 +94,15 @@ const Demo = () => {
                 }}
               >
                 <h3>{card.title}</h3>
-                <div className="demo-placeholder">{card.placeholder}</div>
+                <div className="demo-placeholder">
+                  <video
+                    src={card.videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  ></video>
+                </div>
                 <div className="demo-avg">
                   <span className="demo-avg-value">{card.description}</span>
                 </div>

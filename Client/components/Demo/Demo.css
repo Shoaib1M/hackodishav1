@@ -94,8 +94,18 @@
   min-height: 120px;
   position: relative;
   overflow: hidden;
-  font-family: "Baloo 2", sans-serif;
   flex-grow: 1; /* Allow placeholder to grow */
+  padding: 0; /* Remove padding for video */
+  font-family: "Baloo 2", sans-serif;
+}
+
+.demo-placeholder video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .demo-avg {
