@@ -120,3 +120,45 @@ button:hover {
 	color: #fff;
 	background: rgba(255,255,255,0.06);
 }
+
+/* 🔹 Description toggle button */
+.desc-btn {
+	display: block;              /* center under header */
+	margin: 1rem auto 0 auto;    /* horizontal center */
+	border: none !important;
+	background: #67c090 !important;
+	color: #124170 !important;
+	padding: 0.6rem 1.2rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: bold;
+	font-family: "Lilita One", sans-serif;
+	transition: all 0.3s ease;
+}
+
+.desc-btn:hover {
+	background: #55a97a !important;
+	color: #fff !important;
+}
+
+/* 🔹 Description box (updated for visibility + alignment) */
+.desc-box {
+	margin: 1.5rem auto 0 auto;   /* centers it under header */
+	max-width: 900px;             /* keeps it readable */
+	background: rgba(255, 255, 255, 0.98);
+	color: #222;                  /* dark text for readability */
+	padding: 1.5rem 2rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+	text-align: left;
+	font-size: 1rem;
+	line-height: 1.6;
+	border: 2px solid #67C090;    /* highlight so it's visible */
+	animation: fadeIn 0.4s ease-in-out;
+}
+
+/* 🔹 Smooth fade effect */
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(-10px); }
+	to { opacity: 1; transform: translateY(0); }
+}

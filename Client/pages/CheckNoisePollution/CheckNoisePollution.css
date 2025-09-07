@@ -78,3 +78,58 @@
   text-align: center;
   margin-bottom: 1rem;
 }
+
+/* Header with doc button */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 1rem auto;
+  padding: 0 1rem;
+}
+
+.doc-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #4be1b8;
+  color: #124170;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.doc-button:hover {
+  background: #3ccfa6;
+}
+
+/* Documentation Box */
+.doc-box {
+  max-width: 900px;
+  margin: 1rem auto 2rem auto;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.doc-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #4be1b8;
+}
+
+.doc-box h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #ffd580;
+}
+
+.doc-box ul {
+  margin: 0.5rem 0 0 1.25rem;
+  line-height: 1.6;
+}

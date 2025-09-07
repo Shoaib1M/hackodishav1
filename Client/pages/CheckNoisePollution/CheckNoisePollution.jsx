@@ -19,6 +19,7 @@ const CheckNoisePollution = () => {
   const [stations, setStations] = useState([]);
   const [selectedStation, setSelectedStation] = useState("");
   const [summary, setSummary] = useState(null);
+  const [showDoc, setShowDoc] = useState(false);
 
   const detailsRef = useRef(null);
 
@@ -26,7 +27,6 @@ const CheckNoisePollution = () => {
     fetch("/api/noise")
       .then((res) => res.json())
       .then((json) => {
-        // Normalize keys for easier usage
         const normalized = json.map((d) => ({
           Station: d.Station.trim(),
           Year: d.Year,
@@ -86,7 +86,46 @@ const CheckNoisePollution = () => {
     <>
       <Navbar />
       <div className="noise-container">
-        <h2>🔊 Noise Pollution Trends in Indian Cities</h2>
+        <div className="header-section">
+          <h2>🔊 Noise Pollution Trends in Indian Cities</h2>
+          <button className="doc-button" onClick={() => setShowDoc(!showDoc)}>
+            {showDoc ? "Hide Description" : "Show Description"}
+          </button>
+        </div>
+
+        {showDoc && (
+          <div className="doc-box">
+            <h3>📘 About This Page</h3>
+            <p>
+              This page visualizes <strong>noise pollution trends</strong>{" "}
+              across Indian cities, highlighting both day and night levels
+              compared against permissible limits. Excessive noise levels are
+              linked to stress, poor sleep, and long-term hearing damage.
+            </p>
+            <h4>🔎 How to Use:</h4>
+            <ul>
+              <li>
+                Select a <strong>city</strong> from the dropdown menu.
+              </li>
+              <li>
+                Compare <strong>day vs. night noise levels</strong> with legal
+                limits.
+              </li>
+              <li>
+                Review the <strong>summary section</strong> for yearly trends
+                and predictions.
+              </li>
+              <li>
+                See where <strong>noise exceeds safe limits</strong> in the bar
+                chart.
+              </li>
+              <li>
+                Check suggested <strong>precautionary measures</strong> for
+                reducing exposure.
+              </li>
+            </ul>
+          </div>
+        )}
 
         <p className="description">
           Noise pollution is one of the most harmful yet overlooked forms of
