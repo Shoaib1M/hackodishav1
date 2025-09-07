@@ -104,11 +104,11 @@ const Hero = () => {
     navigate("/checknoisepollution");
   }
   function handleClick4() {
-    navigate("/trash-detector"); 
+    navigate("/trash-detection");
   }
 
   function handleClick5() {
-    navigate("/land-pollution-stats");
+    navigate("/checklandpollution");
   }
 
   return (

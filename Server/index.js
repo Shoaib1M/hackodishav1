@@ -138,6 +138,34 @@ app.get("/api/noise", (req, res) => {
     });
 });
 
+app.get("/api/landwaste", (req, res) => {
+  const results = [];
+  const csvPath = path.join(__dirname, "land_waste_india.csv");
+
+  const stream = fs.createReadStream(csvPath);
+
+  stream.on("error", (error) => {
+    console.error("Error reading CSV file:", error);
+    res.status(500).json({ error: "Could not read land waste data." });
+  });
+
+  stream
+    .pipe(csv())
+    .on("data", (row) => {
+      results.push({
+        Year: +row.Year,
+        State: +row.State.trim(),
+        Generated: +row.Generated.TPD,
+        Collected: +row.Collected.TPD,
+        Treated: +row.Treated.TPD,
+        Landfill: +row.Landfill.TPD,
+      });
+    })
+    .on("end", () => {
+      res.json(results);
+    });
+});
+
 // ✅ Start server
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
