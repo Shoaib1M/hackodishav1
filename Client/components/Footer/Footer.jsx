@@ -6,9 +6,9 @@ const Footer = () => (
   <footer id="contact" className="footer">
     <div className="footer-content">
       <nav className="footer-links">
-        <Link to="/about" className="footer-link">About</Link>
+        <Link to="/about" className="footer-link">Documentation / PPT</Link>
         <span className="footer-dot">·</span>
-        <Link to="/contact" className="footer-link">Contact</Link>
+        <Link to="/contact" className="footer-link">Contact Us</Link>
         <span className="footer-dot">·</span>
         <a
           href="#"
@@ -19,9 +19,6 @@ const Footer = () => (
           GitHub Repo
         </a>
       </nav>
-      <div className="footer-disclaimer">
-        Noise data simulated for demo purposes.
-      </div>
     </div>
   </footer>
 );

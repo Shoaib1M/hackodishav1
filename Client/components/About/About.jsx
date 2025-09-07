@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./About.css";
 
 const aboutText =
-  "Every city has a hidden soundtrack, the constant hum of traffic, the buzz of construction, the chatter of daily life. But when that soundtrack grows too loud, it starts to affect our health, sleep, and peace of mind. That's where NoiseLens comes in. We built it to turn invisible noise into visible insights. Using AI, NoiseLens maps city sound patterns, highlights pollution hotspots, and reveals how noise shapes urban living. And it's not just about cities, anyone can upload their own audio to see what's really happening in their environment. In seconds, you'll know what sounds surround you, how loud they are, and what you can do to stay safe. Powered by the MERN stack and deployed on Akash Cloud's decentralized network, NoiseLens is designed to be fast, reliable, and scalable, because understanding our soundscape is the first step toward making it healthier.";
+  "Every environment has a hidden layer—smog in the air, chemicals in the water, and the constant noise around us. These invisible pollutants build up quietly, but their impact on our health, safety, and quality of life is loud and clear. That’s where SwachhLens comes in. We built it to turn unseen pollution into visible insights. Using AI, SwachhLens monitors environmental patterns, identifies pollution hotspots, and reveals how our surroundings shape the way we live. And it’s not just about cities—anyone can upload their own recordings or data to uncover what’s really happening in their environment. In seconds, you’ll see the types of pollution present, how severe they are, and what actions you can take to stay safe. Powered by the MERN stack and deployed on Akash Cloud’s decentralized network, SwachhLens is designed to be fast, reliable, and scalable—because understanding pollution is the first step toward creating a healthier world.";
 
 const About = () => {
   const [displayed, setDisplayed] = useState("");
@@ -55,15 +55,20 @@ const About = () => {
 
   // Function to highlight specific words
   const highlightText = (text) => {
+    const techKeywords = new Set(['ai', 'mern', 'akash']);
+    const softKeywords = new Set([
+      'swachhlens', 'decentralized', 'fast', 'reliable', 'scalable',
+      'pollution', 'hotspots', 'environment', 'health', 'safety', 'air', 'water', 'noise'
+    ]);
     const words = text.split(/(\s+)/);
     return words.map((word, index) => {
-      const cleanWord = word.replace(/[.,!?;:]/g, '');
-      if (['AI', 'MERN', 'Akash'].includes(cleanWord)) {
-        return (
-          <span key={index} className="highlight-word">
-            {word}
-          </span>
-        );
+      const cleanWord = word.replace(/[.,!?;:’'"—-]/g, '').toLowerCase();
+      if (techKeywords.has(cleanWord)) {
+        const cls = cleanWord === 'akash' ? 'highlight-word-red' : 'highlight-word';
+        return <span key={index} className={cls}>{word}</span>;
+      }
+      if (softKeywords.has(cleanWord)) {
+        return <span key={index} className="soft-highlight">{word}</span>;
       }
       return word;
     });
@@ -86,7 +91,7 @@ const About = () => {
         ))}
       </div>
       <div className="about-content">
-        <h2 className="about-heading">About PolSense</h2>
+        <h2 className="about-heading">About SwachhLens</h2>
         <p className="about-text">
           {highlightText(displayed)}
           <span className={`about-caret${done ? " hide" : ""}`} />

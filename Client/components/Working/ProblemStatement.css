@@ -1,0 +1,97 @@
+
+
+.problem-section {
+  padding: 60px 20px;
+  /* The first background is a semi-transparent gradient overlay, the second is the image */
+  background-image: linear-gradient(
+      100deg,
+      rgba(18, 65, 112, 0.8) 0%,
+      rgba(38, 102, 127, 0.8) 100%
+    ),
+    url("https://images.pexels.com/photos/8542537/pexels-photo-8542537.jpeg");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  border-bottom: 1px solid #d1e7dd;
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-content {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.problem-headline {
+  font-family: "Lilita One", sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+}
+
+.problem-points {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .problem-points {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.problem-point {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.problem-point:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.problem-point h3 {
+  font-family: "Lilita One", sans-serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.problem-point p {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.problem-cta {
+  background: linear-gradient(90deg, #4caf50, #67c090);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.problem-cta:hover {
+  background: linear-gradient(90deg, #45a049, #5aa87d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}

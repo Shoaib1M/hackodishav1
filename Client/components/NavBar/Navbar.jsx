@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
 
@@ -8,6 +8,7 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const [showNavLinks, setShowNavLinks] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Scroll spy functionality
   useEffect(() => {
@@ -20,7 +21,7 @@ function Navbar() {
         return;
       }
 
-      const sections = ["hero", "about", "quick-demo", "working", "contact"];
+      const sections = ["problem", "hero", "about", "quick-demo", "working", "contact"];
       const scrollPosition = window.scrollY + 100;
       let currentSection = "";
 
@@ -59,6 +60,18 @@ function Navbar() {
     setIsMenuOpen(false);
   }, [location]);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    // If navigation state includes a "scrollTo" target, scroll there.
+    if (location.state?.scrollTo) {
+      // Use a timeout to ensure the element is available after the page transition
+      setTimeout(() => scrollToSection(location.state.scrollTo), 100);
+    } else {
+      // Otherwise, scroll to the top of the page.
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -71,17 +84,18 @@ function Navbar() {
   };
 
   const handleLogoClick = (e) => {
-
-    // If we are already on the home page, prevent default link behavior
-    // and just do a smooth scroll.
+    e.preventDefault(); // Prevent the default link behavior
     if (location.pathname === "/") {
-      e.preventDefault();
+      // If on the homepage, just scroll smoothly
       scrollToSection("hero");
+    } else {
+      // If on another page, navigate to the homepage and pass the target section in state
+      navigate("/", { state: { scrollTo: "hero" } });
     }
-    // On other pages, we do NOT prevent default, so the `href` will navigate.
   };
 
   const navItems = [
+    { id: "problem", label: "The Problem", href: "#problem" },
     { id: "hero", label: "Home", href: "#hero" },
     { id: "about", label: "About", href: "#about" },
     { id: "quick-demo", label: "Demo", href: "#quick-demo" },
