@@ -95,14 +95,14 @@ const CheckNoisePollution = () => {
 
         {showDoc && (
           <div className="doc-box">
-            <h3>📘 About This Page</h3>
+            <h3>About:</h3>
             <p>
               This page visualizes <strong>noise pollution trends</strong>{" "}
               across Indian cities, highlighting both day and night levels
               compared against permissible limits. Excessive noise levels are
               linked to stress, poor sleep, and long-term hearing damage.
             </p>
-            <h4>🔎 How to Use:</h4>
+            <h4>How to Use:</h4>
             <ul>
               <li>
                 Select a <strong>city</strong> from the dropdown menu.
