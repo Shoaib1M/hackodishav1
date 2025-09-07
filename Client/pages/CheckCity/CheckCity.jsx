@@ -14,16 +14,19 @@ import "leaflet/dist/leaflet.css";
 import Navbar from "../../components/NavBar/Navbar.jsx";
 import "./CheckCity.css";
 
+// 🌍 Backend API base URL
+const SERVER_API = "https://hackodishav1-server.onrender.com";
+
 function CheckCity() {
   const [country, setCountry] = useState("");
   const [cities, setCities] = useState([]);
   const [cityUid, setCityUid] = useState("");
   const [aqiData, setAqiData] = useState(null);
   const [pointerPosition, setPointerPosition] = useState(0);
-  const [showDesc, setShowDesc] = useState(false); // 👈 NEW
+  const [showDesc, setShowDesc] = useState(false);
 
   const mapRef = useRef(null);
-  const detailsRef = useRef(null); // for auto-scroll
+  const detailsRef = useRef(null);
 
   // Initialize Leaflet Map
   useEffect(() => {
@@ -70,10 +73,12 @@ function CheckCity() {
     }
   }, [aqiData]);
 
-  // Fetch list of stations for a country
+  // ✅ Fetch list of stations for a country
   const fetchCities = async (countryName) => {
     try {
-      const response = await fetch(`/api/countries/${countryName}`);
+      const response = await fetch(
+        `${SERVER_API}/api/countries/${countryName}`
+      );
       const data = await response.json();
       const uniqueCities = {};
       (data.cities || []).forEach((c) => {
@@ -90,9 +95,10 @@ function CheckCity() {
     }
   };
 
+  // ✅ Fetch AQI details for a city
   const fetchCityData = async (uid) => {
     try {
-      const response = await fetch(`/api/station/${uid}`);
+      const response = await fetch(`${SERVER_API}/api/station/${uid}`);
       const data = await response.json();
       setAqiData(data);
 
@@ -132,7 +138,6 @@ function CheckCity() {
         <header className="page-header">
           <h1 className="page-title">Global Air Quality Monitor</h1>
 
-          {/* 👇 Description Toggle */}
           <button className="desc-btn" onClick={() => setShowDesc(!showDesc)}>
             {showDesc ? "Hide Description" : "Show Description"}
           </button>
@@ -249,42 +254,6 @@ function CheckCity() {
                   <Line type="monotone" dataKey="max" stroke="#ff4d4f" />
                 </LineChart>
               </ResponsiveContainer>
-            </div>
-
-            {/* 📊 AQI Summary & Projection */}
-            <div className="aqi-summary">
-              {(() => {
-                const forecast = aqiData.forecast.daily.pm25;
-                const first = forecast[0]?.avg || 0;
-                const last = forecast[forecast.length - 1]?.avg || 0;
-                const change = (((last - first) / first) * 100).toFixed(1);
-
-                const slope = (last - first) / forecast.length;
-                const projected = (last + slope * 5).toFixed(1);
-
-                return (
-                  <>
-                    <h2>Air Quality Trends</h2>
-                    <p>
-                      At the beginning of the forecast, AQI was{" "}
-                      <strong>{first}</strong>. Now it is{" "}
-                      <strong>{last}</strong>, showing a{" "}
-                      <strong
-                        style={{ color: change > 0 ? "red" : "lightgreen" }}
-                      >
-                        {change > 0
-                          ? `${change}% increase`
-                          : `${Math.abs(change)}% decrease`}
-                      </strong>
-                      .
-                    </p>
-                    <p>
-                      If the current trend continues, AQI is projected to be
-                      around <strong>{projected}</strong> in the next 5 years.
-                    </p>
-                  </>
-                );
-              })()}
             </div>
           </>
         )}

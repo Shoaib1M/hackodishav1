@@ -1,12 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:5000",
+  baseURL: "https://hackodishav1-jy25.onrender.com", // ✅ deployed noise ML service
 });
 
-// const api = axios.create({
-//   baseURL: "http://localhost:5000",
-// });
 // Function to send audio file to backend
 export const analyzeAudio = async (audioFile) => {
   const formData = new FormData();

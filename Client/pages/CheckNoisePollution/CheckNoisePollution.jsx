@@ -24,7 +24,7 @@ const CheckNoisePollution = () => {
   const detailsRef = useRef(null);
 
   useEffect(() => {
-    fetch("/api/noise")
+    fetch("https://hackodishav1-jy25.onrender.com/predict") // ✅ deployed noise ML service
       .then((res) => res.json())
       .then((json) => {
         const normalized = json.map((d) => ({

@@ -7,10 +7,15 @@ const CheckImage = () => {
   const [resultImage, setResultImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showHowToUse, setShowHowToUse] = useState(false);
+  const [predictionText, setPredictionText] = useState(null);
+
+  // 🔗 Waste ML deployed endpoint
+  const WASTE_API = "https://hackodishav1-1-iosy.onrender.com/predict";
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
-    setResultImage(null); // reset old results
+    setResultImage(null);
+    setPredictionText(null); // reset old results
   };
 
   const handleUpload = async () => {
@@ -21,18 +26,31 @@ const CheckImage = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("http://127.0.0.1:5001/predict", {
+      const response = await fetch(WASTE_API, {
         method: "POST",
         body: formData,
       });
 
-      if (!response.ok) throw new Error("Prediction failed");
+      if (!response.ok) {
+        const errText = await response.text();
+        console.error("Backend error:", errText);
+        throw new Error(`Prediction failed: ${errText}`);
+      }
 
-      const blob = await response.blob();
-      setResultImage(URL.createObjectURL(blob));
+      // 🔍 Detect if backend sent JSON or an image
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const data = await response.json();
+        console.log("Prediction JSON:", data);
+        setPredictionText(JSON.stringify(data, null, 2));
+      } else {
+        const blob = await response.blob();
+        console.log("Received blob from backend:", blob);
+        setResultImage(URL.createObjectURL(blob));
+      }
     } catch (error) {
-      console.error(error);
-      alert("Error uploading image!");
+      console.error("Upload error:", error);
+      alert("Error uploading image: " + error.message);
     } finally {
       setLoading(false);
     }
@@ -63,7 +81,10 @@ const CheckImage = () => {
                 Click the <strong>Upload & Detect</strong> button to start the
                 classification.
               </li>
-              <li>The result will be displayed with the detected waste.</li>
+              <li>
+                The result will be displayed either as an annotated image or as
+                prediction text.
+              </li>
             </ul>
           </div>
         )}
@@ -74,11 +95,10 @@ const CheckImage = () => {
             urbanization, and excessive use of plastics have severely
             contaminated soil and reduced land productivity. Prolonged exposure
             to polluted land can harm human health, disrupt ecosystems, and
-            limit agricultural output. The charts below show the historical
-            levels of solid waste generation and land degradation across Indian
-            cities compared against permissible thresholds.
+            limit agricultural output.
           </p>
         </div>
+
         <div className="checkimage-content">
           <div className="file-input-wrapper">
             <input type="file" accept="image/*" onChange={handleFileChange} />
@@ -87,7 +107,7 @@ const CheckImage = () => {
             {loading ? "Processing..." : "Upload & Detect"}
           </button>
 
-          {selectedFile && !resultImage && (
+          {selectedFile && !resultImage && !predictionText && (
             <div className="preview">
               <h3>Preview:</h3>
               <img src={URL.createObjectURL(selectedFile)} alt="preview" />
@@ -98,6 +118,13 @@ const CheckImage = () => {
             <div className="result">
               <h3>Detected Image:</h3>
               <img src={resultImage} alt="result" />
+            </div>
+          )}
+
+          {predictionText && (
+            <div className="result-text">
+              <h3>Prediction Result:</h3>
+              <pre>{predictionText}</pre>
             </div>
           )}
         </div>
