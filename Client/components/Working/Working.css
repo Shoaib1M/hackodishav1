@@ -6,6 +6,63 @@
   color: #ddf4e7; /* Light Mint */
 }
 
+/* Main 5-card layout */
+.main-cards {
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+  padding: 0 2rem;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.main-cards.faded {
+  opacity: 0.15;
+  filter: blur(1px);
+  pointer-events: none;
+}
+.main-row {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.main-row.row-1 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.main-row.row-2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 1.75rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(103, 192, 144, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+.main-card:hover { transform: translateY(-6px); }
+.main-card.dim { opacity: 0.5; }
+.main-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.main-title { font-family: "Fredoka", sans-serif; color: #26667f; font-weight: 700; }
+
+/* Detail view */
+.detail-flow { max-width: 1200px; margin: 0 auto 2rem auto; padding: 0 2rem; }
+.back-btn {
+  margin-top: 1rem;
+  border: 2px solid #67C090;
+  background: transparent;
+  color: #124170;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+.back-btn:hover { background: #67C090; color: #124170; }
+
 .working-flow {
   margin-bottom: 4rem;
   max-width: 1200px;
@@ -169,6 +226,8 @@
   .tech-logos {
     gap: 2rem;
   }
+  .main-row.row-1 { grid-template-columns: 1fr; }
+  .main-row.row-2 { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
