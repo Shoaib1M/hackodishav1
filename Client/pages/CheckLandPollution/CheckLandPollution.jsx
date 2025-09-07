@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Navbar from "../../components/NavBar/Navbar.jsx";
 import "./CheckLandPollution.css";
 
 const CheckLandPollution = () => {
@@ -30,39 +31,42 @@ const CheckLandPollution = () => {
   const filteredData = data.filter((d) => d.State === selectedState);
 
   return (
-    <div className="land-container">
-      <h2>♻️ Land Waste Data Visualization</h2>
+    <>
+      <Navbar />
+      <div className="land-container">
+        <h2>♻️ Land Waste Data Visualization</h2>
 
-      <div className="dropdown">
-        <label>Select State: </label>
-        <select
-          value={selectedState}
-          onChange={(e) => setSelectedState(e.target.value)}
-        >
-          {states.map((state) => (
-            <option key={state} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className="dropdown">
+          <label>Select State: </label>
+          <select
+            value={selectedState}
+            onChange={(e) => setSelectedState(e.target.value)}
+          >
+            {states.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="chart-container">
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={filteredData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="Year" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="Generated" stroke="#8884d8" />
-            <Line type="monotone" dataKey="Collected" stroke="#82ca9d" />
-            <Line type="monotone" dataKey="Treated" stroke="#ffc658" />
-            <Line type="monotone" dataKey="Landfilled" stroke="#ff4d4d" />
-          </LineChart>
-        </ResponsiveContainer>
+        <div className="chart-container">
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={filteredData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="Year" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="Generated" stroke="#8884d8" />
+              <Line type="monotone" dataKey="Collected" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="Treated" stroke="#ffc658" />
+              <Line type="monotone" dataKey="Landfilled" stroke="#ff4d4d" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
