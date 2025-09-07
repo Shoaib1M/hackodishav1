@@ -3,9 +3,9 @@
   width: 100%;
   margin: 0;
   padding: 100px 2rem 2rem;
-  background-color: #124170; /* Fallback */
-  background-image: linear-gradient(rgba(25, 52, 80, 0.85), rgba(25, 52, 80, 0.85)),
-    url('https://images.pexels.com/photos/459728/pexels-photo-459728.jpeg');
+  background-color: #124170;
+  background-image: linear-gradient(100deg, rgba(18, 65, 112, 0.9) 0%, rgba(38, 102, 127, 0.9) 100%),
+    url("https://images.pexels.com/photos/459728/pexels-photo-459728.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -18,9 +18,10 @@
   text-align: center;
   margin: 0 auto 1.5rem auto;
   color: #fff;
-  font-family: "Fredoka", sans-serif;
-  font-size: 2.6rem;
-  font-weight: 700;
+  font-family: "Lilita One", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 
 .description {
@@ -29,10 +30,11 @@
   text-align: center;
   font-size: 1.15rem;
   line-height: 1.6;
-  color: #e0e0e0;
+  color: #ddf4e7;
   background: rgba(255, 255, 255, 0.08);
   padding: 1rem 1.5rem;
   border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(6px);
 }
 
@@ -48,17 +50,17 @@
   padding: 10px 15px;
   border-radius: 8px;
   border: 2px solid #67C090;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  background: transparent;
+  background: rgba(18, 65, 112, 0.5);
   color: #FFFFFF;
   outline: none;
   transition: all 0.3s ease;
 }
 
 .dropdown select:hover {
-  border-color: #4be1b8;
-  background: rgba(255, 255, 255, 0.05);
+  border-color: #82d8a4;
+  background: rgba(18, 65, 112, 0.7);
 }
 
 .dropdown label {
@@ -72,7 +74,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 1.5rem auto;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 1.5rem 2rem;
   backdrop-filter: blur(10px);
@@ -85,16 +87,17 @@
   max-width: 900px;
   margin: 2rem auto;
   padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8px);
 }
 
 .precautions h2 {
   text-align: center;
-  font-size: 2rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #fff;
@@ -107,7 +110,7 @@
 }
 
 .precautions li {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6;
   margin: 0.5rem 0;
   display: flex;
@@ -141,16 +144,17 @@
   max-width: 900px;
   margin: 2rem auto;
   padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
 .summary h2 {
-  font-size: 2rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #fff;
@@ -158,13 +162,13 @@
 
 .summary p {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #e6e6e6;
 }
 
 /* Highlight numbers */
 .summary strong {
-  color: #4be1b8;
+  color: #67c090;
   font-weight: 700;
 }
 
@@ -175,16 +179,17 @@
   max-width: 700px;
   margin: 2rem auto;
   padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   backdrop-filter: blur(10px);
 }
 
 .gap-chart h2 {
-  font-size: 1.8rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
   color: #fff;
 }

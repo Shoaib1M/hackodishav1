@@ -1,80 +1,152 @@
 .noise-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 100px 2rem 2rem;
+  background-color: #124170;
+  background-image: linear-gradient(100deg, rgba(18, 65, 112, 0.9) 0%, rgba(38, 102, 127, 0.9) 100%),
+    url("https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
+  font-family: "Nunito", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .noise-container h2 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+  margin: 0 auto 1.5rem auto;
+  font-family: "Lilita One", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
   text-align: center;
 }
 
 .description {
   max-width: 900px;
+  margin: 1rem auto 2rem auto;
   text-align: center;
-  margin-bottom: 2rem;
+  font-size: 1.15rem;
   line-height: 1.6;
-  color: #ddd;
+  color: #ddf4e7;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
 }
 
 /* Dropdown */
 .dropdown {
-  margin-bottom: 2rem;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  margin-bottom: 20px;
+}
+
+.dropdown label {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
 }
 
 .dropdown select {
-  padding: 0.6rem 1rem;
+  padding: 10px 15px;
   border-radius: 8px;
-  border: none;
+  border: 2px solid #67C090;
   font-size: 1rem;
+  font-weight: 600;
+  background: rgba(18, 65, 112, 0.5);
+  color: #FFFFFF;
   outline: none;
-  background: #f5f5f5;
-  color: #333;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .dropdown select:hover {
-  background: #e9e9e9;
+  border-color: #82d8a4;
+  background: rgba(18, 65, 112, 0.7);
 }
 
 /* Chart containers */
-.chart-container,
-.gap-chart {
+.chart-container {
   width: 100%;
-  max-width: 1000px;
-  margin: 2rem auto;
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .summary {
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: 12px;
   margin: 2rem auto;
-  line-height: 1.6;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.summary h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.summary p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #e6e6e6;
+}
+
+.summary strong {
+  color: #67c090;
+  font-weight: 700;
 }
 
 .precautions {
   max-width: 900px;
-  margin-top: 2rem;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
   background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
   border-radius: 12px;
-  line-height: 1.6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 .precautions h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .gap-chart h2 {
   text-align: center;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
+}
+
+.gap-chart {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  backdrop-filter: blur(10px);
 }

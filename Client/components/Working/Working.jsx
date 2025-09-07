@@ -46,7 +46,7 @@ const audioFlow = [
   {
     iconSrc: aiImg,
     title: "Simulated AI Analysis",
-    desc: "NoiseLens (simulated AI) classifies sound type and estimates decibel level.",
+    desc: "SwachhLens (simulated AI) classifies sound type and estimates decibel level.",
     example: "Detected: Traffic Noise, 78 dB.",
   },
   {
@@ -61,8 +61,8 @@ const noiseFlow = [
   {
     iconSrc: folderImg,
     title: "Upload Recording",
-    desc: "Choose a recorded sound file (WAV/MP3) to analyze.",
-    example: "traffic.wav, factory.mp3",
+    desc: "Choose a recorded sound file (WAV) to analyze.",
+    example: "traffic.wav, factory.wav",
   },
   {
     iconSrc: aiImg,
