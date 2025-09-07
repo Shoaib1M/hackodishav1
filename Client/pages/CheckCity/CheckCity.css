@@ -277,3 +277,28 @@ select option {
 .precautions li::marker {
   color: #67c090; /* greenish for contrast */
 }
+/* AQI Summary Section */
+.aqi-summary {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.aqi-summary h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.aqi-summary p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  color: #f0f0f0;
+}
