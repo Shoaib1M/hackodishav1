@@ -22,15 +22,15 @@ const ClosingCTA = () => {
   };
 
   const handleNoiseStatsClick = () => {
-    navigate("/noise-stats");
+    navigate("/checknoisepollution");
   };
 
   const handleTrashDetectorClick = () => {
-    navigate("/trash-detector");
+    navigate("/checkimage");
   };
 
   const handleLandPollutionStatsClick = () => {
-    navigate("/land-pollution-stats");
+    navigate("/checklandpollution");
   };
 
   return (

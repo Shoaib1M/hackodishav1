@@ -17,12 +17,20 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: #ffffff; /* White */
   font-size: 1.7rem;
   font-weight: bold;
   letter-spacing: 2px;
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
 }
 
 .logo:hover {

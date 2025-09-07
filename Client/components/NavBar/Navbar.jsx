@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
+import logoFinal from "../../assets/logofinal.png";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -100,13 +101,14 @@ function Navbar() {
     { id: "about", label: "About", href: "#about" },
     { id: "quick-demo", label: "Demo", href: "#quick-demo" },
     { id: "working", label: "Core Features", href: "#working" },
-    { id: "contact", label: "Contact", href: "#contact" }
+    { id: "contact", label: "Documentation", href: "#contact" }
   ];
 
   return (
     <nav className="navbar">
       <a href="/#hero" className="logo" onClick={handleLogoClick}>
-        SwachhSense
+        <img src={logoFinal} alt="SwachhSense Logo" className="logo-img" />
+        <span>SwachhSense</span>
       </a>
 
       {/* Desktop Navigation */}

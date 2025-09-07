@@ -8,10 +8,10 @@ const Footer = () => (
       <nav className="footer-links">
         <Link to="/about" className="footer-link">Documentation / PPT</Link>
         <span className="footer-dot">·</span>
-        <Link to="/contact" className="footer-link">Contact Us</Link>
+        
         <span className="footer-dot">·</span>
         <a
-          href="#"
+          href="https://github.com/Shoaib1M/hackodishav1"
           target="_blank"
           rel="noopener noreferrer"
           className="footer-link"

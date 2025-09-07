@@ -22,15 +22,15 @@ const ProblemStatement = () => {
         </h2>
         <div className="problem-points">
           <div className="problem-point">
-            <h3>The Invisible Air We Breathe 💨</h3>
+            <h3>The Invisible Air We Breathe:</h3>
             <p>Invisible air pollutants like PM2.5, released from everyday traffic and industry, penetrate our lungs and cause serious health issues like asthma and allergies. Understanding your local air quality is the first step toward protecting your health.</p>
           </div>
           <div className="problem-point">
-            <h3>The Unheard Danger of Noise 📣</h3>
+            <h3>The Unheard Danger of Noise:</h3>
             <p>More than a mere annoyance, constant urban noise is a serious health risk that causes stress, sleep disruption, and permanent hearing loss. Our environments frequently exceed safe decibel (dB) levels, harming both human and animal life.</p>
           </div>
           <div className="problem-point">
-            <h3>Our Land Under Siege 🗑️</h3>
+            <h3>Our Land Under Siege:</h3>
             <p>Our planet is being overwhelmed by waste. Overflowing landfills contaminate our soil and water, while the equivalent of a garbage truck of plastic is dumped into our oceans every single minute, destroying ecosystems worldwide.</p>
           </div>
         </div>
