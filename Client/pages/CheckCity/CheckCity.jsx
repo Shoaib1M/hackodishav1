@@ -46,6 +46,19 @@ function CheckCity() {
     }
   }, []);
 
+
+
+// Recalculate Leaflet size after layout and on window resize
+  useEffect(() => {
+    const resize = () => {
+      if (mapRef.current) mapRef.current.invalidateSize();
+    };
+    const t = setTimeout(resize, 0);
+    window.addEventListener("resize", resize);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", resize);
+    };  }, []);
   // Update pointer position when AQI data changes
   useEffect(() => {
     if (aqiData && aqiData.aqi) {

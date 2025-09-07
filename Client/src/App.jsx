@@ -6,19 +6,24 @@ import CheckFile from "../pages/CheckFile/CheckFile.jsx";
 import Navbar from "../components/NavBar/Navbar.jsx";
 import CheckNoisePollution from "../pages/CheckNoisePollution/CheckNoisePollution.jsx";
 import LoginPage from "../pages/Login/LoginPage.jsx";
-import { AuthProvider } from "./AuthContext.jsx";
+import { AuthProvider } from './AuthContext.jsx';
+import './App.css';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/checkcity" element={<CheckCity />} />
-          <Route path="/checkfile" element={<CheckFile />} />
-          <Route path="/checknoisepollution" element={<CheckNoisePollution />} />
-        </Routes>
+        <div className="app-container">
+          <div className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/checkcity" element={<CheckCity />} />
+              <Route path="/checkfile" element={<CheckFile />} />
+              <Route path="/checknoisepollution" element={<CheckNoisePollution />} />
+            </Routes>
+          </div>
+        </div>
       </Router>
     </AuthProvider>
   );
