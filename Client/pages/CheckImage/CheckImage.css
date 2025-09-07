@@ -1,33 +1,152 @@
 .checkimage-container {
-  max-width: 800px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 100px 2rem 2rem;
+  background-color: #124170;
+  background-image: linear-gradient(100deg, rgba(18, 65, 112, 0.9) 0%, rgba(38, 102, 127, 0.9) 100%),
+    url("https://images.pexels.com/photos/3186574/pexels-photo-3186574.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-family: "Nunito", sans-serif;
+}
+
+.checkimage-content {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   text-align: center;
-  padding: 20px;
+}
+
+.checkimage-container h1 {
+  font-family: "Lilita One", sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.checkimage-description p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #ddf4e7;
+}
+.checkimage-description {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
 }
 
 .checkimage-container input {
-  margin: 10px 0;
+  display: block;
+  margin: 1.5rem auto;
+  color: #fff;
+  font-family: "Nunito", sans-serif;
+}
+
+/* Style the file input button */
+.checkimage-container input::file-selector-button {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  color: #124170;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #67C090;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkimage-container input::file-selector-button:hover {
+  background: #82d8a4;
 }
 
 .checkimage-container button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
+  font-family: "Lilita One", sans-serif;
+  font-size: 1.1rem;
+  background: #67C090;
+  color: #124170;
+  width: 250px;
+  padding: 12px 24px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .checkimage-container button:disabled {
-  background-color: #888;
+  background-color: #555;
+  color: #aaa;
+  cursor: not-allowed;
 }
 
-.preview, .result {
-  margin-top: 20px;
+.checkimage-container button:hover:not(:disabled) {
+  background: #82d8a4;
 }
 
-.preview img, .result img {
+.preview,
+.result {
+  margin-top: 2rem;
+}
+
+.preview img,
+.result img {
   max-width: 100%;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.how-to-use-btn {
+  display: block;
+  margin: -0.5rem auto 1.5rem auto;
+  padding: 8px 20px;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  background: #67c090;
+  color: #124170;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.how-to-use-btn:hover {
+  background: #82d8a4;
+}
+
+.how-to-use-box {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+.how-to-use-box h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.how-to-use-box ul {
+  padding-left: 20px;
+}
+
+.file-input-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
 }

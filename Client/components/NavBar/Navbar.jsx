@@ -106,7 +106,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <a href="/#hero" className="logo" onClick={handleLogoClick}>
-        PolSense
+        SwachhSense
       </a>
 
       {/* Desktop Navigation */}

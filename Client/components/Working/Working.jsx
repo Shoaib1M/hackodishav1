@@ -140,24 +140,6 @@ const FlowRow = ({ title, steps }) => (
 
 const TechHighlight = () => (
   <section className="tech-section" id="tech">
-    <div className="tech-logos">
-      <span className="tech-logo" title="React">
-        <img className="tech-img" src={reactLogo} alt="React" />
-        <span className="tech-label">React</span>
-      </span>
-      <span className="tech-logo" title="Flask">
-        <img className="tech-img" src={flaskLogo} alt="Flask" />
-        <span className="tech-label">Flask</span>
-      </span>
-      <span className="tech-logo" title="MongoDB">
-        <img className="tech-img" src={mongoLogo} alt="MongoDB" />
-        <span className="tech-label">MongoDB</span>
-      </span>
-      <span className="tech-logo" title="Akash">
-        <img className="tech-img" src={akashLogo} alt="Akash Network" />
-        <span className="tech-label">Akash</span>
-      </span>
-    </div>
     <div className="tech-text">
       Deployed on decentralized cloud for scalability &amp; reliability.
     </div>
