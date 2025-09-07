@@ -458,20 +458,58 @@ function CheckCity() {
 
         {/* 📈 AQI Forecast Chart */}
         {aqiData && aqiData.forecast?.daily?.pm25 && (
-          <div className="chart-container">
-            <ResponsiveContainer width="100%" height={400}>
-              <LineChart data={aqiData.forecast.daily.pm25}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="min" stroke="#8884d8" />
-                <Line type="monotone" dataKey="avg" stroke="#82ca9d" />
-                <Line type="monotone" dataKey="max" stroke="#ff4d4f" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <>
+            <div className="chart-container">
+              <ResponsiveContainer width="100%" height={400}>
+                <LineChart data={aqiData.forecast.daily.pm25}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="day" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="min" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="avg" stroke="#82ca9d" />
+                  <Line type="monotone" dataKey="max" stroke="#ff4d4f" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* 📊 AQI Summary & Projection */}
+            <div className="aqi-summary">
+              {(() => {
+                const forecast = aqiData.forecast.daily.pm25;
+                const first = forecast[0]?.avg || 0;
+                const last = forecast[forecast.length - 1]?.avg || 0;
+                const change = (((last - first) / first) * 100).toFixed(1);
+
+                const slope = (last - first) / forecast.length;
+                const projected = (last + slope * 5).toFixed(1);
+
+                return (
+                  <>
+                    <h2>Air Quality Trends</h2>
+                    <p>
+                      At the beginning of the forecast, AQI was{" "}
+                      <strong>{first}</strong>. Now it is{" "}
+                      <strong>{last}</strong>, showing a{" "}
+                      <strong
+                        style={{ color: change > 0 ? "red" : "lightgreen" }}
+                      >
+                        {change > 0
+                          ? `${change}% increase`
+                          : `${Math.abs(change)}% decrease`}
+                      </strong>
+                      .
+                    </p>
+                    <p>
+                      If the current trend continues, AQI is projected to be
+                      around <strong>{projected}</strong> in the next 5 years.
+                    </p>
+                  </>
+                );
+              })()}
+            </div>
+          </>
         )}
 
         {/* 🛡️ Precautionary Tips Section */}
@@ -512,7 +550,7 @@ function getAQIAdvice(aqi) {
   return "☠️ Stay indoors.";
 }
 
-// 🛡️ New Detailed Precaution Helper
+// 🛡️ Updated Detailed Precaution Helper (5 points each)
 function getDetailedPrecautions(aqi) {
   if (aqi <= 50)
     return (
@@ -520,25 +558,28 @@ function getDetailedPrecautions(aqi) {
         <li>Enjoy outdoor activities freely ✅</li>
         <li>No health risks expected.</li>
         <li>Maintain a healthy lifestyle with outdoor exercises.</li>
+        <li>Open windows to ventilate your home.</li>
+        <li>Encourage kids to play outdoors.</li>
       </>
     );
   if (aqi <= 100)
     return (
       <>
         <li>Safe for most people 🙂</li>
-        <li>
-          Sensitive individuals (asthma, elderly, children) should monitor
-          symptoms.
-        </li>
+        <li>Sensitive individuals should monitor symptoms.</li>
         <li>Keep windows closed during peak traffic hours.</li>
+        <li>Limit outdoor exercises near roads.</li>
+        <li>Consider using air filters indoors.</li>
       </>
     );
   if (aqi <= 150)
     return (
       <>
         <li>⚠️ Sensitive groups should reduce outdoor exertion.</li>
-        <li>Consider wearing an anti-pollution mask when outside.</li>
-        <li>Use air purifiers indoors if possible.</li>
+        <li>Wear an anti-pollution mask when outside.</li>
+        <li>Use air purifiers indoors.</li>
+        <li>Limit outdoor exposure for children and elderly.</li>
+        <li>Avoid outdoor exercise during evening traffic.</li>
       </>
     );
   if (aqi <= 200)
@@ -547,14 +588,18 @@ function getDetailedPrecautions(aqi) {
         <li>❌ Avoid prolonged outdoor activities.</li>
         <li>All individuals may experience discomfort.</li>
         <li>Keep children and elderly indoors.</li>
+        <li>Close windows and doors tightly.</li>
+        <li>Use N95/N99 masks outdoors.</li>
       </>
     );
   if (aqi <= 300)
     return (
       <>
-        <li>🚨 Health warning: Serious health effects possible.</li>
+        <li>🚨 Serious health effects possible.</li>
         <li>Everyone should avoid outdoor activities.</li>
-        <li>Use N95/N99 masks if going outside is unavoidable.</li>
+        <li>Run air purifiers indoors 24/7.</li>
+        <li>Limit use of vehicles to reduce pollution.</li>
+        <li>Follow local government health advisories.</li>
       </>
     );
   return (
@@ -562,7 +607,8 @@ function getDetailedPrecautions(aqi) {
       <li>☠️ Emergency situation! Hazardous air quality.</li>
       <li>Stay indoors with air purifiers running.</li>
       <li>Avoid all physical activity outside.</li>
-      <li>Follow government advisories for health and safety.</li>
+      <li>Follow government advisories strictly.</li>
+      <li>Seek medical attention if feeling unwell.</li>
     </>
   );
 }

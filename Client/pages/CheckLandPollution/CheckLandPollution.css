@@ -11,6 +11,7 @@
   background-repeat: no-repeat;
   color: #FFFFFF;
   font-family: "Nunito", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .land-container h2 {
@@ -20,6 +21,19 @@
   font-family: "Fredoka", sans-serif;
   font-size: 2.6rem;
   font-weight: 700;
+}
+
+.description {
+  max-width: 900px;
+  margin: 1rem auto 2rem auto;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
 }
 
 .dropdown {
@@ -38,6 +52,13 @@
   font-weight: 600;
   background: transparent;
   color: #FFFFFF;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.dropdown select:hover {
+  border-color: #4be1b8;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .dropdown label {
@@ -57,4 +78,120 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Precautions Box */
+.precautions {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.precautions h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.precautions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.precautions li {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Emoji / Color coding */
+.precautions li::before {
+  content: "•";
+  margin-right: 0.5rem;
+}
+
+.precautions li:has(✅) {
+  color: #90ee90; /* green */
+}
+.precautions li:has(♻️),
+.precautions li:has(⚠️) {
+  color: #ffd580; /* amber/orange */
+}
+.precautions li:has(🚨),
+.precautions li:has(☠️) {
+  color: #ff8080; /* red */
+}
+
+
+/* ===================== */
+/* Summary Section       */
+/* ===================== */
+.summary {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.summary h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.summary p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e6e6e6;
+}
+
+/* Highlight numbers */
+.summary strong {
+  color: #4be1b8;
+  font-weight: 700;
+}
+
+/* ===================== */
+/* Treatment Gap Chart   */
+/* ===================== */
+.gap-chart {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.gap-chart h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.gap-chart p {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffd580;
+  margin-top: 0.75rem;
 }
