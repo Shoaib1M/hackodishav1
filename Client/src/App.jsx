@@ -6,6 +6,7 @@ import CheckFile from "../pages/CheckFile/CheckFile.jsx";
 import Navbar from "../components/NavBar/Navbar.jsx";
 import CheckNoisePollution from "../pages/CheckNoisePollution/CheckNoisePollution.jsx";
 import LoginPage from "../pages/Login/LoginPage.jsx";
+import CheckLandPollution from "../pages/CheckLandPollution/CheckLandPollution.jsx";
 import { AuthProvider } from "./AuthContext.jsx";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             path="/checknoisepollution"
             element={<CheckNoisePollution />}
           />
+          <Route path="/checklandpollution" element={<CheckLandPollution />} />
         </Routes>
       </Router>
     </AuthProvider>

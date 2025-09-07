@@ -154,11 +154,11 @@ app.get("/api/landwaste", (req, res) => {
     .on("data", (row) => {
       results.push({
         Year: +row.Year,
-        State: +row.State.trim(),
-        Generated: +row.Generated.TPD,
-        Collected: +row.Collected.TPD,
-        Treated: +row.Treated.TPD,
-        Landfill: +row.Landfill.TPD,
+        State: row.State.trim(),
+        Generated: +row["Generated_TPD"],
+        Collected: +row["Collected_TPD"],
+        Treated: +row["Treated_TPD"],
+        Landfilled: +row["Landfilled_TPD"],
       });
     })
     .on("end", () => {
