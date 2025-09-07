@@ -236,3 +236,44 @@ select option {
     max-width: 1400px;
   }
 }
+
+/* Precautionary Tips Section */
+.precautions {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.precautions h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.precautions ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.precautions li {
+  margin: 0.6rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+  font-weight: 400;
+}
+
+/* Add a subtle highlight depending on AQI */
+.precautions li::marker {
+  color: #67c090; /* greenish for contrast */
+}

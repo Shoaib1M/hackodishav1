@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// CheckNoisePollution.jsx
+import React, { useEffect, useState, useRef } from "react";
 import "./CheckNoisePollution.css";
 import Navbar from "../../components/NavBar/Navbar.jsx";
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from "react-leaflet";
@@ -14,7 +15,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// ✅ Real city coordinates
 const cityCoords = {
   Bengaluru: [12.9716, 77.5946],
   Chennai: [13.0827, 80.2707],
@@ -25,7 +25,6 @@ const cityCoords = {
   Mumbai: [19.076, 72.8777],
 };
 
-// ✅ Color scale from green → yellow → red
 function getColor(value) {
   if (value < 60) return "green";
   if (value < 70) return "orange";
@@ -39,6 +38,29 @@ const LoadingSpinner = () => (
   </div>
 );
 
+function getPrecautions(noiseLevel) {
+  if (noiseLevel < 60) {
+    return [
+      "Enjoy the safe environment! Noise levels are within healthy limits.",
+      "Continue practicing good habits like avoiding unnecessary honking.",
+    ];
+  } else if (noiseLevel < 70) {
+    return [
+      "Noise levels are slightly above safe limits.",
+      "Use noise-cancelling headphones if you feel disturbed.",
+      "Limit your time in high-traffic or noisy areas.",
+      "Encourage quieter practices in your community.",
+    ];
+  } else {
+    return [
+      "⚠️ Noise levels are high and may harm your health.",
+      "Avoid staying in noisy areas for long periods.",
+      "Keep windows and doors closed to block outside noise.",
+      "Use earplugs or noise-cancelling headphones when needed.",
+      "Encourage local authorities to enforce noise regulations.",
+    ];
+  }
+}
 
 function CheckNoisePollution() {
   const [data, setData] = useState([]);
@@ -48,9 +70,9 @@ function CheckNoisePollution() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // ✅ Fetch noise data from backend
+  const resultsRef = useRef(null);
+
   useEffect(() => {
-    // Use the Vite proxy to simplify the fetch URL
     fetch("/api/noise")
       .then((res) => res.json())
       .then((json) => {
@@ -59,15 +81,9 @@ function CheckNoisePollution() {
         }
         setData(json);
 
-        // Get unique stations for dropdown
-        // Using .trim() to handle potential whitespace issues in station names
         const uniqueStations = [...new Set(json.map((d) => d.Station.trim()))];
         setStations(uniqueStations);
 
-        // Default selection
-        if (uniqueStations.length > 0) {
-          setSelectedStation(uniqueStations[0]);
-        }
         setLoading(false);
       })
       .catch((err) => {
@@ -77,37 +93,50 @@ function CheckNoisePollution() {
       });
   }, []);
 
-  // ✅ Filter by station
   useEffect(() => {
     if (selectedStation) {
       const newFilteredData = data.filter(
         (d) => d.Station.trim() === selectedStation
       );
       setFilteredData(newFilteredData);
+
+      if (resultsRef.current) {
+        resultsRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [selectedStation, data]);
 
   if (loading) {
-    return <div className="check-city-page"><LoadingSpinner /></div>;
+    return (
+      <div className="check-city-page">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (error) {
     return (
       <>
-      <Navbar />
-      <div className="check-city-page error-page">
-        <div className="aqi-card">
-          <h2>Error Loading Data</h2>
-          <p>
-            Could not fetch noise pollution data. Please ensure the server is
-            running and try again.
-          </p>
-          <pre style={{ color: "#ff8a8a" }}>{error.message}</pre>
+        <Navbar />
+        <div className="check-city-page error-page">
+          <div className="aqi-card">
+            <h2>Error Loading Data</h2>
+            <p>
+              Could not fetch noise pollution data. Please ensure the server is
+              running and try again.
+            </p>
+            <pre style={{ color: "#ff8a8a" }}>{error.message}</pre>
+          </div>
         </div>
-      </div>
       </>
     );
   }
+
+  const latestEntry = filteredData[filteredData.length - 1];
+  const avgNoise = latestEntry
+    ? (latestEntry.Day + latestEntry.Night) / 2
+    : null;
+  const precautions = avgNoise ? getPrecautions(avgNoise) : [];
 
   return (
     <>
@@ -115,96 +144,137 @@ function CheckNoisePollution() {
       <div className="check-city-page noise-pollution-page">
         <h1 className="page-title">Noise Pollution Monitor</h1>
 
+        {/* Dropdown below h1 */}
+        <div className="dropdown-container">
+          <select
+            value={selectedStation}
+            onChange={(e) => setSelectedStation(e.target.value)}
+          >
+            <option value="">-- Select a city --</option>
+            {stations.map((station) => (
+              <option key={station} value={station}>
+                {station}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Map */}
-        <div id="map" className="aqi-map">
-        <MapContainer
-          center={[20.5937, 78.9629]}
-          zoom={5}
-          className="leaflet-map"
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; OpenStreetMap contributors"
-          />
-          {stations.map((station) => {
-            const cityData = data.filter((d) => d.Station.trim() === station);
-            if (!cityData.length || !cityCoords[station]) return null;
+        <div id="map" className="map-container">
+          <MapContainer
+            center={[20.5937, 78.9629]}
+            zoom={5}
+            className="leaflet-map"
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; OpenStreetMap contributors"
+            />
+            {stations.map((station) => {
+              const cityData = data.filter((d) => d.Station.trim() === station);
+              if (!cityData.length || !cityCoords[station]) return null;
 
-            // Latest year’s value
-            const latest = cityData[cityData.length - 1];
-            const avgNoise = (latest.Day + latest.Night) / 2;
+              const latest = cityData[cityData.length - 1];
+              const avgNoiseCity = (latest.Day + latest.Night) / 2;
 
-            return (
-              <CircleMarker
-                key={station}
-                center={cityCoords[station]}
-                radius={10}
-                fillOpacity={0.8}
-                fillColor={getColor(avgNoise)}
-                stroke={false}
-              >
-                <Tooltip>
-                  <div>
-                    <b>{station}</b>
-                    <br />
-                    Year: {latest.Year}
-                    <br />
-                    Day: {latest.Day} dB
-                    <br />
-                    Night: {latest.Night} dB
-                  </div>
-                </Tooltip>
-              </CircleMarker>
-            );
-          })}
-        </MapContainer>
-      </div>
+              return (
+                <CircleMarker
+                  key={station}
+                  center={cityCoords[station]}
+                  radius={10}
+                  fillOpacity={0.8}
+                  fillColor={getColor(avgNoiseCity)}
+                  stroke={false}
+                >
+                  <Tooltip>
+                    <div>
+                      <b>{station}</b>
+                      <br />
+                      Year: {latest.Year}
+                      <br />
+                      Day: {latest.Day} dB
+                      <br />
+                      Night: {latest.Night} dB
+                    </div>
+                  </Tooltip>
+                </CircleMarker>
+              );
+            })}
+          </MapContainer>
+        </div>
 
-        {/* Controls Bar */}
-        <div className="controls-bar">
-          <div className="dropdowns">
-            <select
-              value={selectedStation}
-              onChange={(e) => setSelectedStation(e.target.value)}
-            >
-              {stations.map((station) => (
-                <option key={station} value={station}>
-                  {station}
-                </option>
-              ))}
-            </select>
+        {/* Results */}
+        {selectedStation && (
+          <div ref={resultsRef} className="results-section">
+            <h2>Noise Levels (dB) - {selectedStation}</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart data={filteredData}>
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="rgba(255, 255, 255, 0.2)"
+                />
+                <XAxis dataKey="Year" tick={{ fill: "#e0e0e0" }} />
+                <YAxis
+                  label={{
+                    value: "Decibels (dB)",
+                    angle: -90,
+                    position: "insideLeft",
+                    fill: "#e0e0e0",
+                  }}
+                  tick={{ fill: "#e0e0e0" }}
+                />
+                <ReTooltip
+                  contentStyle={{
+                    backgroundColor: "rgba(30, 30, 30, 0.8)",
+                    border: "1px solid #555",
+                  }}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="Day"
+                  stroke="#ffc107"
+                  name="Day dB"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Night"
+                  stroke="#03a9f4"
+                  name="Night dB"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="DayLimit"
+                  stroke="#4caf50"
+                  name="Day Limit"
+                  strokeDasharray="5 5"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="NightLimit"
+                  stroke="#f44336"
+                  name="Night Limit"
+                  strokeDasharray="5 5"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+
+            {avgNoise && (
+              <div className="precautions">
+                <h2>Precautionary Steps</h2>
+                <p>
+                  Based on the current average noise level of{" "}
+                  <b>{avgNoise.toFixed(1)} dB</b> at <b>{selectedStation}</b>:
+                </p>
+                <ol>
+                  {precautions.map((step, i) => (
+                    <li key={i}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
           </div>
-        </div>
-
-        {/* Noise Chart */}
-        <div className="chart-container">
-          <h2>Noise Levels (dB) - {selectedStation}</h2>
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={filteredData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
-              <XAxis
-                dataKey="Year"
-                label={{ value: "Years", position: "insideBottom", offset: -5 }}
-                tick={{ fill: '#e0e0e0' }}
-              />
-              <YAxis
-                label={{
-                  value: "Decibels (dB)",
-                  angle: -90,
-                  position: "insideLeft",
-                  fill: '#e0e0e0'
-                }}
-                tick={{ fill: '#e0e0e0' }}
-              />
-              <ReTooltip contentStyle={{ backgroundColor: 'rgba(30, 30, 30, 0.8)', border: '1px solid #555' }} />
-              <Legend />
-              <Line type="monotone" dataKey="Day" stroke="#ffc107" name="Day dB" />
-              <Line type="monotone" dataKey="Night" stroke="#03a9f4" name="Night dB" />
-              <Line type="monotone" dataKey="DayLimit" stroke="#4caf50" name="Day Limit" strokeDasharray="5 5" />
-              <Line type="monotone" dataKey="NightLimit" stroke="#f44336" name="Night Limit" strokeDasharray="5 5" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        )}
       </div>
     </>
   );
